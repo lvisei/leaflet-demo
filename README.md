@@ -17,7 +17,7 @@
 >   * 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：
 >   * 动态监控（固定点状态切换、车辆监控）：
 ![](https://user-gold-cdn.xitu.io/2018/2/25/161cd7239e171384?w=1920&h=959&f=png&s=222128)
-> 4. [Leaflet API](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/tree/Leaflet%20API.png)![](https://user-gold-cdn.xitu.io/2018/3/1/161dd4951441cce1?w=691&h=1217&f=png&s=54115)
+> 4. [Leaflet API](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/tree/Leaflet%20API.png)![](https://user-gold-cdn.xitu.io/2018/3/1/161dd4951441cce1?w=691&h=1217&f=png&s=54115)
 ---
 #### Demo用到的库
 * Flat-UI [ Flat UI is based on Bootstrap, a comfortable, responsive, and functional framework that simplifies the development of websites.](https://github.com/designmodo/Flat-UI/)Flat-UI是基于Bootstrap的一个扁平化风格web开发框架。
@@ -25,7 +25,7 @@
 for mobile-friendly interactive maps.](http://leafletjs.com/reference-1.3.0.html)Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
 * Esri Leaflet [A lightweight set of tools for using ArcGIS services with Leaflet.](http://esri.github.io/esri-leaflet/)一个轻量级的工具,基于leaflet利用ArcGIS服务。
 ---
-### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.html)
+### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/25/161cd7e9bfff52ad?w=1920&h=957&f=jpeg&s=2237468)
 * 库引用
 ```
@@ -71,7 +71,7 @@ const setLayer = (ele) => {
     }
 }
 ```
-###  基于Demo 1 利用H5 Geolocation API 定位到当前位置  [Demo 1.1 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.1.html)
+###  基于Demo 1 利用H5 Geolocation API 定位到当前位置  [Demo 1.1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.1.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/26/161d283e74f18d76?w=964&h=480&f=gif&s=862550)
 * 库引用  如上  Demo 1
 ```
@@ -129,8 +129,8 @@ const setLayer = (ele) => {
 ```
 > * 更多了解geolocation对象，可参考[MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
 > * 更多了解使用marker高亮显示，可参考[leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight)插件
-> * 基于Demo 1 利用eaflet封装好的H5定位API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.2.html)
-### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo2.html)
+> * 基于Demo 1 利用eaflet封装好的H5定位API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.2.html)
+### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo2.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/28/161dcd420e164009?w=964&h=480&f=gif&s=2119022)
 * 库引用  如上  Demo 1
 
@@ -199,7 +199,7 @@ let polygon = L.polygon(
     }).addTo(map);  //地图上绘制一个多边形
 ```
 
-### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo3.html)
+### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo3.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/28/161dce7e881a2362?w=1920&h=959&f=jpeg&s=2962698)
 * 库引用
 ```
@@ -260,7 +260,7 @@ const setLayer = (layerUrls, maxZoom) => {
 ```
 >  不同的底图可能图层数不一样，就可能造成浏览器去请求不存在的图层，以及给用户展示出空白区域的不好体验，所以切换图层时候应注意设置最大及最小缩放值。
 
-###  PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo4.html)
+###  PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo4.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/28/161dcf0290ac287b?w=964&h=480&f=gif&s=3275194)
 * 库引用  如上  Demo 1
 * 画一个圆
@@ -317,7 +317,7 @@ polygon.bindTooltip('this is 个多边形');
 // 飞到这个多边形的位置
 // map.fitBounds(polygon.getBounds());
 ```
- ### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo5.html)
+ ### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo5.html)
 ![](https://user-gold-cdn.xitu.io/2018/2/28/161dd0f8edbe36e5?w=964&h=480&f=gif&s=3360015)
 * 库引用 如上  Demo 1
  * 画一个circle并绑定一个Popup
@@ -356,7 +356,7 @@ map.on('click', function (e) {
 });
 ```
 
- ### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo6.html)
+ ### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo6.html)
  
 ![](https://user-gold-cdn.xitu.io/2018/3/1/161dd3b18402adcc?w=964&h=480&f=gif&s=5224505)
 * 库引用 如上  Demo   1
@@ -374,7 +374,7 @@ const population = () => {
 }
 ```
 
-> 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/js/geojson.json)
+> 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/js/geojson.json)
 
 * 绘制边界并添加图例
 
