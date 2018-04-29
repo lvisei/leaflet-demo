@@ -1059,8 +1059,8 @@ for mobile-friendly interactive maps.</a>Leaflet 是一个为建设交互性好�
 </code></pre><br />
 </em> 地图加载与切换<br />
 <pre><code>const map = L.map(&quot;mapDiv&quot;, {
-        crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系
-        // crs: L.CRS.EPSG4326, //国内的坐标参考系
+        crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系,互联网地图主流坐标系
+        // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
         zoomControl: true,
         // minZoom: 1,
         attributionControl: true,
@@ -1259,7 +1259,7 @@ let polygon = L.polygon(
         layerUrls.map((item) =&gt; {
             oLayer.push(L.esri.tiledMapLayer({
                 url: item,
-                useCors: false,
+                useCors: false, 
                 maxZoom: maxZoom, // 设置最大放大图层值
             }).addTo(oMap));
         })
@@ -1361,24 +1361,14 @@ const mypop = L.popup();</p>
 * 获得geojson并处理数据
 
 </code></pre><br />
+// 请求geojson并处理数据<br />
 const population = () =&gt; {<br />
     $.get(&ldquo;./js/geojson.json&rdquo;, function (response) {<br />
-        let poplData = response.data;<br />
-        let PolygonsCenter = response.geopoint<br />
-        let oLat = null;<br />
-        for (let i = 0; i &lt; poplData.length; i++) {<br />
-            // 处理geoJson数据格式<br />
-            poplData[i].geoJson = JSON.parse(poplData[i].geoJson)<br />
-           //完成坐标转换[纬度, 经度]<br />
-            for (let j = 0; j &lt; poplData[i].geoJson.coordinates[0][0].length; j++) {<br />
-                oLat = poplData[i].geoJson.coordinates[0][0][j][0];<br />
-                poplData[i].geoJson.coordinates[0][0][j][0] = poplData[i].geoJson.coordinates[0][0][j][1];<br />
-                poplData[i].geoJson.coordinates[0][0][j][1] = oLat;<br />
-            }<br />
-        }<br />
+        const poplData = response.data<br />
+        const PolygonsCenter = response.geopoint<br />
         drawPolygons(poplData, PolygonsCenter)<br />
     });<br />
-    }<br />
+}<br />
 <pre><code>
 &gt; 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/js/geojson.json)
 
@@ -1390,21 +1380,34 @@ let oPolygon_VilPop = [];</p>
     position: &lsquo;bottomright&rsquo;<br />
  });</p>
 <p>const drawPolygons = (poplData, PolygonsCenter) =&gt; {<br />
-    for (let i = 0; i &lt; poplData.length; i++) {<br />
-        oPolygon_VilPop[i] = L.polygon(poplData[i].geoJson.coordinates[0], {<br />
-            color: &lsquo;white&rsquo;,<br />
-            fillColor: getBgColor(poplData[i].population), //获取边界的填充色<br />
-            fillOpacity: 0.6,<br />
-            weight: 3,<br />
-            dashArray: &lsquo;10&rsquo;<br />
-        }).addTo(oMap).bindTooltip(poplData[i].villageName + &lsquo;<br><br>人口&rsquo; + poplData[i].population + &lsquo;人&rsquo;, {<br />
+    for (const i in poplData) {<br />
+        poplData[i].geoJson = JSON.parse(poplData[i].geoJson)<br />
+        oPolygon_VilPop[i] = L.geoJSON(poplData[i].geoJson, {<br />
+            style: function () {<br />
+                return {<br />
+                    color: &lsquo;white&rsquo;,<br />
+                    fillColor: getBgColor(poplData[i].population), //获取边界的填充色<br />
+                    fillOpacity: 0.6,<br />
+                    weight: 3,<br />
+                    dashArray: &lsquo;10&rsquo;<br />
+                };<br />
+            }<br />
+        }).bindTooltip(poplData[i].villageName + &lsquo;<br><br>人口&rsquo; + poplData[i].population + &lsquo;人&rsquo;, {<br />
             direction: &lsquo;top&rsquo;<br />
         }).on({<br />
             mouseover: highlight, //鼠标移动上去高亮<br />
             mouseout: resetHighlight, //鼠标移出恢复原样式<br />
             click: zoomTo //点击最大化<br />
-        });<br />
+        }).addTo(oMap);<br />
     }</p>
+<pre><code>// 添加图例
+legend.onAdd = legendHtml;
+legend.addTo(oMap);
+
+// 定位到该界限的中心位置
+oMap.flyToBounds(PolygonsCenter);
+</code></pre>
+<p>}</p>
 <p>// 添加图例<br />
 legend.onAdd = legendHtml;<br />
 legend.addTo(oMap);</p>

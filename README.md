@@ -364,24 +364,14 @@ map.on('click', function (e) {
 * 获得geojson并处理数据
 
 ```
+// 请求geojson并处理数据
 const population = () => {
     $.get("./js/geojson.json", function (response) {
-        let poplData = response.data;
-        let PolygonsCenter = response.geopoint
-        let oLat = null;
-        for (let i = 0; i < poplData.length; i++) {
-            // 处理geoJson数据格式
-            poplData[i].geoJson = JSON.parse(poplData[i].geoJson)
-           //完成坐标转换[纬度, 经度]
-            for (let j = 0; j < poplData[i].geoJson.coordinates[0][0].length; j++) {
-                oLat = poplData[i].geoJson.coordinates[0][0][j][0];
-                poplData[i].geoJson.coordinates[0][0][j][0] = poplData[i].geoJson.coordinates[0][0][j][1];
-                poplData[i].geoJson.coordinates[0][0][j][1] = oLat;
-            }
-        }
+        const poplData = response.data
+        const PolygonsCenter = response.geopoint
         drawPolygons(poplData, PolygonsCenter)
     });
-    }
+}
 ```
 
 > 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/js/geojson.json)
@@ -396,21 +386,34 @@ const legend = L.control({
  });
  
 const drawPolygons = (poplData, PolygonsCenter) => {
-    for (let i = 0; i < poplData.length; i++) {
-        oPolygon_VilPop[i] = L.polygon(poplData[i].geoJson.coordinates[0], {
-            color: 'white',
-            fillColor: getBgColor(poplData[i].population), //获取边界的填充色
-            fillOpacity: 0.6,
-            weight: 3,
-            dashArray: '10'
-        }).addTo(oMap).bindTooltip(poplData[i].villageName + '<br><br>人口' + poplData[i].population + '人', {
+    for (const i in poplData) {
+        poplData[i].geoJson = JSON.parse(poplData[i].geoJson)
+        oPolygon_VilPop[i] = L.geoJSON(poplData[i].geoJson, {
+            style: function () {
+                return {
+                    color: 'white',
+                    fillColor: getBgColor(poplData[i].population), //获取边界的填充色
+                    fillOpacity: 0.6,
+                    weight: 3,
+                    dashArray: '10'
+                };
+            }
+        }).bindTooltip(poplData[i].villageName + '<br><br>人口' + poplData[i].population + '人', {
             direction: 'top'
         }).on({
             mouseover: highlight, //鼠标移动上去高亮
             mouseout: resetHighlight, //鼠标移出恢复原样式
             click: zoomTo //点击最大化
-        });
+        }).addTo(oMap);
     }
+
+    // 添加图例
+    legend.onAdd = legendHtml;
+    legend.addTo(oMap);
+
+    // 定位到该界限的中心位置
+    oMap.flyToBounds(PolygonsCenter);
+}
     
 // 添加图例
 legend.onAdd = legendHtml;
