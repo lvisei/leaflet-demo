@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>leaflet地图操作（缩放、平移、定位/书签、动画）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation" style="margin-bottom: 0; border-radius: 0; z-index:2">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Flat UI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#fakelink">Menu Item
+                        <span class="navbar-unread">1</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="JavaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown">地图缩放
+                        <b class="caret"></b>
+                    </a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="setZoom()">setZoom() 改变到图层10</a>
+                        </li>
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="setZoomIn()">zoomIn() 图层往里进一个图层</a>
+                        </li>
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="setZoomOut()">zoomOut() 图层往里出一个图层</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="JavaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown">地图定位
+                        <b class="caret"></b>
+                    </a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="panTo()">panTo() 地图平移到点</a>
+                        </li>
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="flyTo()">flyTo() 地图飞到点</a>
+                        </li>
+                        <li>
+                            <a href="JavaScript:void(0)" onclick="fitBounds()">fitBounds() 平移到一个区域</a>
+                            <a href="JavaScript:void(0)" onclick="flyToBounds()">flyToBounds() 飞到一个区域</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="mapDiv" style="position: absolute;top: 53px;bottom: 0;z-index:1"></div>
+            <!-- 地图面板 -->
+            <!--底部状态栏部分 -->
+        </div>
+    </div>
+</body>
+<script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./lib/leaflet/leaflet.js"></script>
+<script src="./js/urlTemplate.js"></script>
+<script>
+    const map = L.map("mapDiv", {
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        minZoom: 1,
+        attributionControl: true,
+        zoomAnimation: true //缩放是否带动画
+    }).setView([36.52, 120.31], 8);
+    let Baselayer = L.tileLayer(urlTemplate.mapbox_url, {
+        maxZoom: 18,
+        id: 'mapbox.light',
+        attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet_Demo">WebGIS-for-learnning</a>'
+    }).addTo(map);
+
+
+    // 做一个maker表示定位在这里并可以拖动
+    L.marker([36.52, 120.31], { draggable: true }).addTo(map);
+    L.marker([37.91082, 128.73583], { draggable: true }).addTo(map);
+
+
+
+    const setZoom = () => {
+        map.setZoom(10, {
+            // animate: false
+        })  //设置地图缩放到
+    }
+
+    const setZoomIn = () => {
+        map.zoomIn() //图层往里进一个图层，放大
+    }
+
+    const setZoomOut = () => {
+        map.zoomOut()  //图层往里出一个图层，缩小
+    }
+
+
+    const panTo = () => {
+        map.panTo([37.91082, 128.73583], {
+            animate: true
+        }) //地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
+    }
+
+    const flyTo = () => {
+        map.flyTo([36.52, 120.31]); // 点到点的抛物线动画，平移加缩放动画
+    }
+
+    const fitBounds = () => {
+        console.log(polygon.getBounds())
+        map.fitBounds(polygon.getBounds());  //getBounds（获取边界）：返回地图视图的经纬度边界。
+        //平移到一个区域上面，自动判断区域块的大小，合适缩放图层
+    }
+
+    const flyToBounds = () => {
+        map.flyToBounds(polygon.getBounds());   //getBounds（获取边界）：返回地图视图的经纬度边界。
+        //飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
+    }
+
+    // 绑定一个监听事件
+    map.on('zoomend', function (e) {
+        console.log(e.target._zoom)
+    })
+
+
+    let polygon = L.polygon([[37, -109.05], [41, -109.03], [41, -102.05], [37, -102.04]],
+        [40.774, -74.125], {
+            color: 'green',
+            fillColor: '#f03',
+            fillOpacity: 0.5
+        }).addTo(map); //地图上绘制一个多边形
+
+</script>
+
+</html>

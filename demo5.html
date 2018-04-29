@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信息窗口（入口、Popup、定制）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
+    <style>
+        .leaflet-popup-content-wrapper {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .content .leaflet-popup-content {
+            width: 490px;
+            height: 250px;
+            margin: 0;
+            line-height: 1.5;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation" style="margin-bottom: 0; border-radius: 0; z-index:2">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Flat UI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#fakelink">信息窗口
+                        <span class="navbar-unread">1</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createPopup()">popup</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="setPopupContent()">setPopupContent</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createSelfPopup()">custom popup</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="mapDiv" style="position: absolute;top: 53px;bottom: 0;z-index:1"></div>
+            <!-- 地图面板 -->
+            <!--底部状态栏部分 -->
+        </div>
+    </div>
+</body>
+<script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./lib/leaflet/leaflet.js"></script>
+<script src="./js/urlTemplate.js"></script>
+<script>
+    const map = L.map("mapDiv", {
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        minZoom: 1,
+        attributionControl: false,
+        zoomAnimation: true //缩放是否带动画
+    }).setView([36.52, 120.31], 8);
+    let Baselayer = L.tileLayer(urlTemplate.mapbox_url, {
+        maxZoom: 18,
+        id: 'mapbox.streets',
+    }).addTo(map);
+
+
+    // Popup
+    const createPopup = () => {
+        // 画一个circle
+        const circle = L.circle([36.92, 121.31], {
+            color: 'green', //描边色
+            fillColor: '#f03',  //填充色
+            fillOpacity: 0.5, //透明度
+            radius: 10000 //半径，单位米
+        }).addTo(map);
+
+        // 绑定一个弹窗
+        circle.bindPopup('我是个圆');
+
+        map.fitBounds(circle.getBounds());
+    }
+
+
+    //动态改变Popup的内容
+    const setPopupContent = () => {
+        const mypop = L.popup();
+        map.on('click', function (e) {
+            mypop.setLatLng(e.latlng)
+                .setContent('你临幸了这个点：<br>' + e.latlng.toString())
+                .openOn(map);
+        });
+    }
+
+
+
+    //自定义一个Popup
+    const createSelfPopup = () => {
+        // 做一个maker
+        const marker = L.marker([36.52, 120.31]).addTo(map);
+
+        //maker上自定义一个popup
+        const html = '<p>Hello world!<br />This is a nice popup.</p>'
+        const popup = marker.bindPopup(html, { maxHeight: 250, maxWidth: 490, className: 'content', offset: [0, 0] }).on('popupopen', function (params) {
+            console.log(params)
+        });
+
+        map.flyTo(marker.getLatLng());
+    }
+
+</script>
+
+</html>

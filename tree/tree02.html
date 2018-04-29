@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%;padding: 10% 0;box-sizing: border-box;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        const myChart = echarts.init(document.getElementById('container'));
+        $.get('./data.json', function (data) {
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove'
+                },
+                series: [
+                    {
+                        type: 'tree',
+
+                        data: [data],
+
+                        top: '0',
+                        left: '20%',
+                        bottom: '0',
+                        right: '20%',
+
+                        symbolSize: 7,
+                        initialTreeDepth: 3,
+
+                        label: {
+                            normal: {
+                                position: 'left',
+                                verticalAlign: 'middle',
+                                // align: 'right',
+                                fontSize: 10
+                            }
+                        },
+
+                        expandAndCollapse: true,
+                        animationDuration: 550,
+                        animationDurationUpdate: 750
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        })
+
+    </script>
+</body>
+
+</html>

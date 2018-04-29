@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>要素标绘（点/聚簇、线、面，符号化/静态动态）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation" style="margin-bottom: 0; border-radius: 0; z-index:2">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Flat UI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#fakelink">绘制元素
+                        <span class="navbar-unread">1</span>
+                    </a>
+                </li>
+                 <li>
+                <a href="JavaScript:void(0)" onclick="createCircle()">circle</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createMarker()">marker</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createSelfMarker()">custom marker</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createPolyline()">polyline</a>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="createPolygon()">polygon</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="mapDiv" style="position: absolute;top: 53px;bottom: 0;z-index:1"></div>
+            <!-- 地图面板 -->
+            <!--底部状态栏部分 -->
+        </div>
+    </div>
+</body>
+<script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./lib/leaflet/leaflet.js"></script>
+<script src="./js/urlTemplate.js"></script>
+<script>
+    const map = L.map("mapDiv", {
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        minZoom: 1,
+        attributionControl: true,
+        zoomAnimation: false //缩放是否带动画
+    }).setView([36.52, 120.31], 8);
+    let Baselayer = L.tileLayer(urlTemplate.mapbox_url, {
+        maxZoom: 18,
+        id: 'mapbox.streets',
+    }).addTo(map);
+
+
+    // 画一个circle
+    const createCircle = () => {
+        const circle = L.circle([36.52, 120.31], {
+            color: 'green', //描边色
+            fillColor: '#f03',  //填充色
+            fillOpacity: 0.5, //透明度
+            radius: 10000 //半径，单位米
+        }).addTo(map);
+        // 绑定一个提示标签
+        circle.bindTooltip('我是个圆');
+        map.fitBounds(circle.getBounds());
+    }
+
+
+    // 做一个maker
+    const createMarker = () => {
+        const marker = L.marker([36.52, 120.31]).addTo(map);
+        // 绑定一个提示标签
+        marker.bindTooltip('这是个Marker', { direction: 'left' }).openTooltip()
+    }
+
+
+    //自定义一个maker
+    const createSelfMarker = () => {
+        const greenIcon = L.icon({
+            iconUrl: './icon/logo.png',
+            iconSize: [300, 79], // size of the icon
+            popupAnchor: [0, -10] // point from which the popup should open relative to the iconAnchor
+        });
+
+        const oMarker = L.marker([36.52, 124.31], { icon: greenIcon }).addTo(map);
+        // 绑定一个提示标签
+        oMarker.bindTooltip('这是个自定义Marker', { direction: 'left', offset: [-150, 0] });
+        map.panTo(oMarker.getLatLng());
+    }
+
+
+    //画一根线
+    const createPolyline = () => {
+        const polyline = L.polyline([[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]], { color: 'red' }).addTo(map);
+        // 飞到这个线的位置
+        map.fitBounds(polyline.getBounds());
+    }
+
+
+    // 画一个polygon
+    const createPolygon = () => {
+        const polygon = L.polygon([
+            [[37, -109.05], [41, -109.03], [41, -102.05], [37, -102.04]], // outer ring
+            [[37.29, -108.58], [40.71, -108.58], [40.71, -102.50], [37.29, -102.50]] // hole
+        ], {
+                color: 'green',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+            }).addTo(map);
+        // 绑定一个提示标签
+        polygon.bindTooltip('this is 个多边形');
+        // 飞到这个多边形的位置
+        map.fitBounds(polygon.getBounds());
+    }
+
+    // 绑定一个监听事件
+    map.on('zoomend', function (e) {
+        console.log(e.target._zoom)
+    })
+
+
+</script>
+
+</html>

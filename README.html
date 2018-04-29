@@ -1,0 +1,1512 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>README</title></head><body><article class="markdown-body"><h3 id="leafletdemo"><a name="user-content-leafletdemo" href="#leafletdemo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>入门Leaflet之小Demo</h3>
+<hr />
+<blockquote>
+<p>写在前面 ---- WebGIS开发基础之Leaflet<br />
+1. GIS基本概念：GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；<br />
+2. GIS开发概述：架构模式、常用平台和SDK、二维三维<br />
+3. 使用Leaflet开发常用功能<br />
+  * 地图加载（底图类型、切换）：<br />
+  * 地图操作（缩放、平移、定位/书签、动画）：<br />
+  * 图层管理（加载、移除、调整顺序）：<br />
+  * 要素标绘（点/聚簇、线、面，符号化/静态动态）：<br />
+  * 属性标注（字段可选、样式定制）：<br />
+  * 专题地图（点、线、面，渲染）：<br />
+  * 查询定位（属性查询、空间查询/周边搜索/缓冲区/面查点线面/点线查面、图属互查、综合查询）：<br />
+  * 信息窗口（入口、Popup、定制）：<br />
+  * 坐标转换（）：<br />
+  * 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：<br />
+  * 动态监控（固定点状态切换、车辆监控）：<br />
+<img alt="" src="https://user-gold-cdn.xitu.io/2018/2/25/161cd7239e171384?w=1920&amp;h=959&amp;f=png&amp;s=222128" /><br />
+4. <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/tree/Leaflet%20API.png">Leaflet API</a><img alt="" src="https://user-gold-cdn.xitu.io/2018/3/1/161dd4951441cce1?w=691&amp;h=1217&amp;f=png&amp;s=54115" /></p>
+</blockquote>
+<hr />
+<h4 id="demo"><a name="user-content-demo" href="#demo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Demo用到的库</h4>
+<ul>
+<li>Flat-UI <a href="https://github.com/designmodo/Flat-UI/"> Flat UI is based on Bootstrap, a comfortable, responsive, and functional framework that simplifies the development of websites.</a>Flat-UI是基于Bootstrap的一个扁平化风格web开发框架。</li>
+<li>leaflet <a href="http://leafletjs.com/reference-1.3.0.html">an open-source JavaScript library<br />
+for mobile-friendly interactive maps.</a>Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。</li>
+<li>Esri Leaflet <a href="http://esri.github.io/esri-leaflet/">A lightweight set of tools for using ArcGIS services with Leaflet.</a>一个轻量级的工具,基于leaflet利用ArcGIS服务。</li>
+</ul>
+<hr />
+<h3 id="part-1-demo-1"><a name="user-content-part-1-demo-1" href="#part-1-demo-1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PART 1： 地图加载（底图类型、切换） <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.html">Demo 1 </a></h3>
+<p><img alt="" src="https://user-gold-cdn.xitu.io/2018/2/25/161cd7e9bfff52ad?w=1920&amp;h=957&amp;f=jpeg&amp;s=2237468" /><br />
+<em> 库引用<br />
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css&quot;
+    /&gt; 
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./lib/Flat-UI-master/dist/css/flat-ui.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./lib/leaflet/leaflet.css&quot;&gt;
+</code></pre><br />
+<pre><code>&lt;script src=&quot;./lib/Flat-UI-master/dist/js/vendor/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./lib/Flat-UI-master/dist/js/flat-ui.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./lib/leaflet/leaflet.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./js/urlTemplate.js&quot;&gt;&lt;/script&gt;
+</code></pre><br />
+</em> 地图加载与切换<br />
+<pre><code>const map = L.map(&quot;mapDiv&quot;, {
+        crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系
+        // crs: L.CRS.EPSG4326, //国内的坐标参考系
+        zoomControl: true,
+        // minZoom: 1,
+        attributionControl: true,
+    }).setView([30.6268660000, 104.1528940000], 18);//定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+    let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+       maxZoom: 17, //最大视图
+        minZoom: 2, //最小视图
+        attribution: 'liuvigongzuoshi@foxmail.com  &amp;copy; &lt;a href=&quot;https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet_Demo&quot;&gt;WebGIS-for-learnning&lt;/a&gt;'
+    }).addTo(map);
+
+const setLayer = (ele) =&gt; {
+    map.removeLayer(Baselayer)
+    if (ele == &quot;mapbox_Image&quot;) {
+        Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+            maxZoom: 17,
+            minZoom: 2
+        }).addTo(map);
+    } else if (ele == &quot;mapbox_Vector&quot;) {
+        Baselayer = L.tileLayer(urlTemplate.mapbox_Vector, {
+            maxZoom: 17,
+            // minZoom: 2
+        }).addTo(map);
+        console.log(Baselayer)
+    }
+}
+</code></pre></p>
+<h3 id="demo-1-h5-geolocation-api-demo-11"><a name="user-content-demo-1-h5-geolocation-api-demo-11" href="#demo-1-h5-geolocation-api-demo-11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>基于Demo 1 利用H5 Geolocation API 定位到当前位置  <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.1.html">Demo 1.1 </a></h3>
+<p><img alt="" src="https://user-gold-cdn.xitu.io/2018/2/26/161d283e74f18d76?w=964&amp;h=480&amp;f=gif&amp;s=862550" /><br />
+<em> 库引用  如上  Demo 1<br />
+<pre><code>//marker高亮显示库引用
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./lib/leaflet.marker.highlight/leaflet.marker.highlight.css&quot;&gt;
+&lt;script src=&quot;./lib/leaflet.marker.highlight/leaflet.marker.highlight.js&quot;&gt;&lt;/script&gt;
+</code></pre><br />
+</em> 判断浏览器是否支持<br />
+<pre><code>    let map;
+    let Baselayer;
+    // 使用H5 API定位 定位在当前位置
+    if (navigator.geolocation) {
+        console.log('/* 地理位置服务可用 */')
+        navigator.geolocation.getCurrentPosition(h5ApiSuccess, h5ApiError);
+    } else {
+        console.log('/* 地理位置服务不可用 */')
+        mapInit([30.374558, 104.09144]);//指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+    }
+</code></pre><br />
+<em> 定位成功或失败<br />
+<pre><code>    const h5ApiSuccess = (position) =&gt; {
+        var latitude = position.coords.latitude; //纬度
+        var longitude = position.coords.longitude; //经度
+        console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。')
+        return mapInit([latitude, longitude]);
+    };
+
+    const h5ApiError = () =&gt; {
+        console.log('/* 地理位置请求失败 */')
+        mapInit([30.374558, 104.09144]);//指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+    };
+</code></pre><br />
+</em> 成功后初始化底图<br />
+<pre><code>    const mapInit = (LatLng) =&gt; {
+        map = L.map(&quot;mapDiv&quot;, {
+            crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系
+            // crs: L.CRS.EPSG4326, //国内的坐标参考系
+            zoomControl: true,
+            // minZoom: 1,
+            attributionControl: true,
+        }).setView(LatLng, 18);//定位在当前位置
+        Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+            maxZoom: 17, //最大视图
+            minZoom: 2, //最小视图
+            attribution: 'liuvigongzuoshi@foxmail.com  &amp;copy; &lt;a href=&quot;https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet_Demo&quot;&gt;WebGIS-for-learnning&lt;/a&gt;'
+        }).addTo(map);
+
+        L.marker(LatLng, {
+            highlight: &quot;permanent&quot; //永久高亮显示
+        }).addTo(map);
+    }
+</code></pre></p>
+<blockquote>
+<ul>
+<li>更多了解geolocation对象，可参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation">MDN Web 文档</a></li>
+<li>更多了解使用marker高亮显示，可参考<a href="https://github.com/brandonxiang/leaflet.marker.highlight">leaflet.marker.highlight</a>插件</li>
+<li>基于Demo 1 利用eaflet封装好的H5定位API,定位到当前位置 <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo1.2.html">Demo</a></li>
+</ul>
+</blockquote>
+<h3 id="part-2-demo-2"><a name="user-content-part-2-demo-2" href="#part-2-demo-2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PART 2： 地图操作（缩放、平移、定位/书签、动画） <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo2.html">Demo 2 </a></h3>
+<p><img alt="" src="https://user-gold-cdn.xitu.io/2018/2/28/161dcd420e164009?w=964&amp;h=480&amp;f=gif&amp;s=2119022" /><br />
+* 库引用  如上  Demo 1</p>
+<ul>
+<li>设置地图缩放到指定图层</li>
+</ul>
+<p><pre><code>map.setZoom(10, {
+  // animate: false
+})  //设置地图缩放到
+</code></pre><br />
+* 图层往里进一个图层，放大</p>
+<p><pre><code>map.zoomIn() //图层往里进一个图层，放大
+//map.zoomOut()  //图层往里出一个图层，缩小
+</code></pre><br />
+* 地图平移至中心点</p>
+<pre><code>map.panTo([37.91082, 128.73583], {
+    animate: true
+}) //地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
+</code></pre>
+
+<ul>
+<li>地图飞到中心点</li>
+</ul>
+<pre><code>map.flyTo([36.52, 120.31]); // 点到点的抛物线动画，平移加缩放动画
+</code></pre>
+
+<blockquote>
+<p>注意：尽量避免setZoom()等地图缩放方法与flyTo、flyToBounds一起合用，因为这两类地图操作方法都有各自的缩放值，造成动画不流畅、不能定位到目的点。</p>
+</blockquote>
+<ul>
+<li>地图飞到边界的合适的位置</li>
+</ul>
+<pre><code>map.flyToBounds(polygon.getBounds());   //getBounds（获取边界）：返回地图视图的经纬度边界。
+    //飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
+
+let polygon = L.polygon(
+          [[37, -109.05], 
+          [41, -109.03], 
+          [41, -102.05], 
+          [37, -102.04]],
+     [40.774, -74.125], {
+       color: 'green',
+       fillColor: '#f03',
+       fillOpacity: 0.5
+    }).addTo(map);  //地图上绘制一个多形
+</code></pre>
+
+<ul>
+<li>地图定位到边界的合适的位置</li>
+</ul>
+<pre><code>map.fitBounds(polygon.getBounds());  //getBounds（获取边界）：返回地图视图的经纬度边界。
+  //平移到一个区域上面，自动判断区域块的大小，合适缩放图层
+
+let polygon = L.polygon(
+          [[37, -109.05], 
+          [41, -109.03], 
+          [41, -102.05], 
+          [37, -102.04]],
+     [40.774, -74.125], {
+       color: 'green',
+       fillColor: '#f03',
+       fillOpacity: 0.5
+    }).addTo(map);  //地图上绘制一个多边形
+</code></pre>
+
+<h3 id="part-3-demo-3"><a name="user-content-part-3-demo-3" href="#part-3-demo-3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PART 3： 图层管理（加载、移除、调整顺序）： <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo3.html">Demo 3 </a></h3>
+<p><img alt="" src="https://user-gold-cdn.xitu.io/2018/2/28/161dce7e881a2362?w=1920&amp;h=959&amp;f=jpeg&amp;s=2962698" /><br />
+<em> 库引用<br />
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;  href=&quot;./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css&quot;
+    /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./lib/Flat-UI-master/dist/css/flat-ui.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./lib/leaflet/leaflet.css&quot;&gt;
+</code></pre><br />
+<pre><code>&lt;script src=&quot;./lib/Flat-UI-master/dist/js/vendor/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./lib/Flat-UI-master/dist/js/flat-ui.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./lib/leaflet/leaflet.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./lib/esri-leaflet-v2.1.2/dist/esri-leaflet.js&quot;&gt;&lt;/script&gt; &lt;!-- esri-leafleat插件 --&gt;
+&lt;script src=&quot;./js/urlTemplate.js&quot;&gt;&lt;/script&gt;
+</code></pre><br />
+</em> 使用esri-leaflet插件加载ArcGIS底图服务<br />
+<pre><code>let oMap = null;
+    let oLayer = [];
+
+    oMap = L.map('mapDiv', {
+        crs: L.CRS.EPSG4326,
+        zoomControl: false,
+        minZoom: 7,
+        attributionControl: false
+    }).setView([29.59, 106.59], 12); //定位在重庆
+
+    oLayer.push(L.esri.tiledMapLayer({
+        url: urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH,
+        maxZoom: 17,
+        minZoom: 0,
+        useCors: false, //是否浏览器在跨域的情况下使用GET请求。
+    }).addTo(oMap)); //加载第一个底图
+
+    oLayer.push(L.esri.tiledMapLayer({
+        url: urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH,
+        maxZoom: 17,
+        minZoom: 0,
+        useCors: false,
+    }).addTo(oMap));  //加载第二个底图
+</code></pre><br />
+* 切换底图(移除及加载)</p>
+<pre><code>const setLayer = (layerUrls, maxZoom) =&gt; {
+        for (let i = 0; i &lt; oLayer.length; i++) {
+            oMap.removeLayer(oLayer[i]) //将图层在地图上移除
+        }
+        oLayer = [] //制空数组
+        layerUrls.map((item) =&gt; {
+            oLayer.push(L.esri.tiledMapLayer({
+                url: item,
+                useCors: false,
+                maxZoom: maxZoom, // 设置最大放大图层值
+            }).addTo(oMap));
+        })
+    }
+</code></pre>
+
+<blockquote>
+<p>不同的底图可能图层数不一样，就可能造成浏览器去请求不存在的图层，以及给用户展示出空白区域的不好体验，所以切换图层时候应注意设置最大及最小缩放值。</p>
+</blockquote>
+<h3 id="part-4-demo-4"><a name="user-content-part-4-demo-4" href="#part-4-demo-4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PART 4： 要素标绘（点、线、面，符号化/静态动态） <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo4.html">Demo 4 </a></h3>
+<p><img alt="" src="https://user-gold-cdn.xitu.io/2018/2/28/161dcf0290ac287b?w=964&amp;h=480&amp;f=gif&amp;s=3275194" /><br />
+<em> 库引用  如上  Demo 1<br />
+</em> 画一个圆<br />
+<pre><code>// 画一个circle
+const circle = L.circle([36.52, 120.31], {
+  color: 'green', //描边色
+  fillColor: '#f03',  //填充色
+  fillOpacity: 0.5, //透明度
+  radius: 10000 //半径，单位米
+}).addTo(map);
+// 绑定一个提示标签
+circle.bindTooltip('我是个圆');
+</code></pre><br />
+<em> Maker及自定义Maker<br />
+<pre><code>// 做一个maker
+const marker = L.marker([36.52, 120.31]).addTo(map);
+// 绑定一个提示标签
+marker.bindTooltip('这是个Marker', { direction: 'left' }).openTooltip();
+
+
+//自定义一个maker
+const greenIcon = L.icon({
+  iconUrl: './icon/logo.png',
+  iconSize: [300, 79], // size of the icon
+  popupAnchor: [0, -10] // point from which the popup should open relative to the iconAnchor
+});
+
+const oMarker = L.marker([36.52, 124.31], { icon: greenIcon }).addTo(map);
+// 绑定一个提示标签
+oMarker.bindTooltip('这是个自定义Marker', { direction: 'left', offset: [-150, 0] });
+</code></pre><br />
+</em> 画一根线<br />
+<pre><code>//画一根线
+const polyline = L.polyline([[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]], { color: 'red' }).addTo(map);
+// 飞到这个线的位置
+// map.fitBounds(polyline.getBounds());
+</code></pre><br />
+<em> 画一个多边形<br />
+<pre><code>// 画一个polygon
+const polygon = L.polygon([
+  [[37, -109.05], [41, -109.03], [41, -102.05], [37, -102.04]], // outer ring
+  [[37.29, -108.58], [40.71, -108.58], [40.71, -102.50], [37.29, -102.50]] // hole
+], {
+    color: 'green',
+    fillColor: '#f03',
+    fillOpacity: 0.5
+  }).addTo(map);
+// 绑定一个提示标签
+polygon.bindTooltip('this is 个多边形');
+// 飞到这个多边形的位置
+// map.fitBounds(polygon.getBounds());
+</code></pre><br />
+ ### PART 5： 信息窗口（入口、Popup、定制） <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo5.html">Demo 5 </a><br />
+<img alt="" src="https://user-gold-cdn.xitu.io/2018/2/28/161dd0f8edbe36e5?w=964&amp;h=480&amp;f=gif&amp;s=3360015" /><br />
+</em> 库引用 如上  Demo 1<br />
+ * 画一个circle并绑定一个Popup<br />
+ ```<br />
+// 画一个circle<br />
+const circle = L.circle([36.92, 121.31], {<br />
+  color: &lsquo;green&rsquo;, //描边色<br />
+  fillColor: &lsquo;#f03&rsquo;,  //填充色<br />
+  fillOpacity: 0.5, //透明度<br />
+  radius: 10000 //半径，单位米<br />
+}).addTo(map);</p>
+<p>// 绑定一个弹窗<br />
+circle.bindPopup(&lsquo;我是个圆&rsquo;);<br />
+<code>* 定位一个marker，绑定一个自定义Popup</code><br />
+// 定位一个maker<br />
+const marker = L.marker([36.52, 120.31]).addTo(map);</p>
+<p>//maker上自定义一个popup<br />
+const html = &lsquo;<p>Hello world!<br />This is a nice popup.</p>&lsquo;;</p>
+<p>const popup = marker.bindPopup(html, { maxHeight: 250, maxWidth: 490, className: &lsquo;content&rsquo;, offset: [0, 0] }).on(&lsquo;popupopen&rsquo;, function (params) {<br />
+  console.log(params)<br />
+});<br />
+<pre><code>* 实现动态改变Popup的内容
+</code></pre><br />
+const mypop = L.popup();</p>
+<p>map.on(&lsquo;click&rsquo;, function (e) {<br />
+  mypop.setLatLng(e.latlng)<br />
+    .setContent(&lsquo;你临幸了这个点：<br>&lsquo; + e.latlng.toString())<br />
+    .openOn(map);<br />
+});<br />
+<pre><code>
+ ### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/demo6.html)
+
+![](https://user-gold-cdn.xitu.io/2018/3/1/161dd3b18402adcc?w=964&amp;h=480&amp;f=gif&amp;s=5224505)
+* 库引用 如上  Demo   1
+
+* 获得geojson并处理数据
+
+</code></pre><br />
+const population = () =&gt; {<br />
+    $.get(&ldquo;./js/geojson.json&rdquo;, function (response) {<br />
+        let poplData = response.data;<br />
+        let PolygonsCenter = response.geopoint<br />
+        let oLat = null;<br />
+        for (let i = 0; i &lt; poplData.length; i++) {<br />
+            // 处理geoJson数据格式<br />
+            poplData[i].geoJson = JSON.parse(poplData[i].geoJson)<br />
+           //完成坐标转换[纬度, 经度]<br />
+            for (let j = 0; j &lt; poplData[i].geoJson.coordinates[0][0].length; j++) {<br />
+                oLat = poplData[i].geoJson.coordinates[0][0][j][0];<br />
+                poplData[i].geoJson.coordinates[0][0][j][0] = poplData[i].geoJson.coordinates[0][0][j][1];<br />
+                poplData[i].geoJson.coordinates[0][0][j][1] = oLat;<br />
+            }<br />
+        }<br />
+        drawPolygons(poplData, PolygonsCenter)<br />
+    });<br />
+    }<br />
+<pre><code>
+&gt; 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/blob/master/Leaflet_Demo/js/geojson.json)
+
+* 绘制边界并添加图例
+
+</code></pre><br />
+let oPolygon_VilPop = [];</p>
+<p>const legend = L.control({<br />
+    position: &lsquo;bottomright&rsquo;<br />
+ });</p>
+<p>const drawPolygons = (poplData, PolygonsCenter) =&gt; {<br />
+    for (let i = 0; i &lt; poplData.length; i++) {<br />
+        oPolygon_VilPop[i] = L.polygon(poplData[i].geoJson.coordinates[0], {<br />
+            color: &lsquo;white&rsquo;,<br />
+            fillColor: getBgColor(poplData[i].population), //获取边界的填充色<br />
+            fillOpacity: 0.6,<br />
+            weight: 3,<br />
+            dashArray: &lsquo;10&rsquo;<br />
+        }).addTo(oMap).bindTooltip(poplData[i].villageName + &lsquo;<br><br>人口&rsquo; + poplData[i].population + &lsquo;人&rsquo;, {<br />
+            direction: &lsquo;top&rsquo;<br />
+        }).on({<br />
+            mouseover: highlight, //鼠标移动上去高亮<br />
+            mouseout: resetHighlight, //鼠标移出恢复原样式<br />
+            click: zoomTo //点击最大化<br />
+        });<br />
+    }</p>
+<p>// 添加图例<br />
+legend.onAdd = legendHtml;<br />
+legend.addTo(oMap);</p>
+<p>// 定位到该界限的中心位置<br />
+oMap.flyToBounds(PolygonsCenter);<br />
+}<br />
+<pre><code>
+* 返回边界的填充色及图列的样式
+</code></pre><br />
+const getBgColor = (d) =&gt; {<br />
+    return d &gt; 400 ? &lsquo;#800026&rsquo; : d &gt; 300 ? &lsquo;#BD0026&rsquo; : d &gt; 200 ? &lsquo;#FC4E2A&rsquo; : d &gt; 100 ? &lsquo;#FD8D3C&rsquo; : d &gt; 50 ? &lsquo;#FED976&rsquo; : &lsquo;#FFEDA0&rsquo;;<br />
+}</p>
+<p>const legendHtml = (map) =&gt; {<br />
+    var div = L.DomUtil.create(&lsquo;div&rsquo;, &lsquo;legend locateVP_legend&rsquo;),<br />
+        grades = [0, 50, 100, 200, 400],<br />
+        labels = [],<br />
+        from, to;<br />
+    for (var i = 0; i &lt; grades.length; i++) {<br />
+        from = grades[i];<br />
+        to = grades[i + 1];<br />
+        labels.push(<br />
+            &lsquo;<i style="background:' + getBgColor(from + 1) + '"></i> &lsquo; +<br />
+            from + (to ? &lsquo; &sim; &lsquo; + to + &lsquo;人&rsquo; : &lsquo;以上&rsquo;));<br />
+    }<br />
+    div.innerHTML = labels.join(&lsquo;<br>&lsquo;);<br />
+    return div;<br />
+    };<br />
+<pre><code>
+* 鼠标移动上去的事件、鼠标移出的事件、发生点击的事件
+
+</code></pre><br />
+const highlight = (e) =&gt; {<br />
+    var layer = e.target;<br />
+    layer.setStyle({<br />
+        weight: 6,<br />
+        color: &lsquo;#fff&rsquo;,<br />
+        fillOpacity: 0.9,<br />
+        dashArray: &lsquo;0&rsquo;<br />
+    })<br />
+}</p>
+<p>const resetHighlight = (e) =&gt; {<br />
+    var layer = e.target;<br />
+    layer.setStyle({<br />
+        color: &lsquo;white&rsquo;,<br />
+        weight: 3,<br />
+        fillOpacity: 0.6,<br />
+        dashArray: &lsquo;10&rsquo;<br />
+    })<br />
+}</p>
+<p>const zoomTo = (e) =&gt; {<br />
+    oMap.fitBounds(e.target.getBounds());<br />
+}<br />
+```</p>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>写在后面</h3>
+<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>国内常用地图服务资源加载插件</h4>
+<blockquote>
+<p>Leaflet.ChineseTmsProviders <a href="https://github.com/htoooth/Leaflet.ChineseTmsProviders">Provider for Chinese Tms Service</a></p>
+</blockquote>
+<ul>
+<li>
+<p>Leaflet调用国内各种地图的功能十分复杂，幸好有leaflet.ChineseTmsProviders这个插件，这四种地图直接就可以加载进来，十分方便。</p>
+</li>
+<li>
+<p>使用方法很简单可点击上面链接去GitHub看使用说明，或拉<a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet.ChineseTmsProviders_Demo">这个demo</a>下来来瞧一瞧代码。</p>
+</li>
+</ul>
+<h4 id="marker"><a name="user-content-marker" href="#marker" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>优化marker相关的插件</h4>
+<ul>
+<li>
+<p>提供了丰富多彩的图标 <a href="https://github.com/lvoogdt/Leaflet.awesome-markers">Leaflet.awesome-markers</a>, See the <a href="http://jsfiddle.net/VPzu4/92/">demo map</a></p>
+</li>
+<li>
+<p>强大的集聚插件 <a href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet.markercluster</a>, See the <a href="https://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-realworld.388.html">demo map</a></p>
+</li>
+<li>
+<p>优化的label <a href="https://github.com/Leaflet/Leaflet.label">Leaflet.label</a>, See the <a href="http://leaflet.github.io/Leaflet.label/">demo map</a></p>
+</li>
+<li>
+<p>优化重叠在一起的markers <a href="https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet">OverlappingMarkerSpiderfier-Leaflet</a>, See the <a href="http://jawj.github.io/OverlappingMarkerSpiderfier-Leaflet/demo.html">demo map</a></p>
+</li>
+<li>
+<p>优化在边框上显示不在当前视野中的marker <a href="https://github.com/ubergesundheit/Leaflet.EdgeMarker">Leaflet.EdgeMarker</a>, See the <a href="http://ubergesundheit.github.io/Leaflet.EdgeMarker/">demo map</a></p>
+</li>
+</ul>
+<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>模块化开发的加载包注意的问题</h4>
+<ul>
+<li>引 leaflet 包的时候不要忘记引用包里的css <code>import 'leaflet/dist/leaflet.css';</code></li>
+</ul>
+<h4 id="leafletesri-leafletlesritiledmaplayerarcgis-uncaught-referenceerror-proj4-is-not-defined"><a name="user-content-leafletesri-leafletlesritiledmaplayerarcgis-uncaught-referenceerror-proj4-is-not-defined" href="#leafletesri-leafletlesritiledmaplayerarcgis-uncaught-referenceerror-proj4-is-not-defined" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>关于Leaflet和esri-leaflet一起使用L.esri.TiledMapLayer加载ArcGIS 服务切片底图时，控制台打印报错 <code>Uncaught ReferenceError: proj4 is not defined</code></h4>
+<ul>
+<li>查看了下源码 <code>if (!proj4) { warn('L.esri.TiledMapLayer is using a non-mercator spatial reference. Support may be available through Proj4Leaflet http://esri.github.io/esri-leaflet/examples/non-mercator-projection.html');}</code> 问题就出在这里，esri-leaflet里的一个插件proj4leaflet依赖<a href="https://github.com/proj4js/proj4js">proj4</a>，所以需要手动引入proj4这个包。</li>
+<li>这个GitHub上面的提问及回答 <a href="https://github.com/Esri/esri-leaflet/issues/1019">Github esri-leaflet Issues</a></li>
+<li>如果你是模块化开发，需要再<code>npm i proj4</code> 然后再引入进来好了 <code>import * as proj4 from 'proj4';
+window['proj4'] = proj4;</code></li>
+<li>如果你是常规开发，直接添加一个script标签引用CDN资源上托管的<a href="https://cdnjs.com/libraries/proj4js">Proj4js</a>就是了 <code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4-src.js"&gt;&lt;/script&gt;</code></li>
+</ul>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考</h4>
+<ul>
+<li><a href="http://blog.csdn.net/liyuanxiang1984/article/details/54601985">GIS制图乐园 esri-leaflet入门教程（1）-leaflet介绍</a></li>
+<li><a href="https://www.jianshu.com/p/3b3efa92dd6d">Awesome GIS（GIS Tech Stack技术栈）</a></li>
+<li><a href="http://malagis.com/learning-leaflet-js-note.html">麻辣GIS Leaflet学习笔记</a></li>
+</ul>
+<blockquote>
+<p>持续更新中  原文地址： <a href="https://juejin.im/post/5a658614f265da3e3f4cce0e">https://juejin.im/post/5a658614f265da3e3f4cce0e</a></p>
+</blockquote></article></body></html>

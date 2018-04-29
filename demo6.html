@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>esri-leaflet底图加载（geojson数据绘制边界）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
+    <style>
+        .legend {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            text-align: left;
+            line-height: 18px;
+            color: #555;
+        }
+
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation" style="margin-bottom: 0; border-radius: 0; z-index:2">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Flat UI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#fakelink">Menu Item
+                        <span class="navbar-unread">1</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="JavaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown">地图切换
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a id="mapbox_Image" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH,urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH], 17)'>影像地图</a>
+                        </li>
+                        <li>
+                            <a id="mapbox_Vector" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_VEC_MAPSERVER_PATH], 17)'>矢量地图</a>
+                        </li>
+                        <li>
+                            <a id="mapbox_Vector" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_DEM_MAPSERVER_PATH], 13)'>地貌地图</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="JavaScript:void(0)" onclick="population()">绘制边界</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" action="#" role="search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn">
+                                <span class="fui-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="mapDiv" style="position: absolute;top: 53px;bottom: 0;z-index:1"></div>
+            <!-- 地图面板 -->
+            <!--底部状态栏部分 -->
+        </div>
+    </div>
+</body>
+<script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./lib/leaflet/leaflet.js"></script>
+<script src="./lib/esri-leaflet-v2.1.2/dist/esri-leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<!-- leafleat插件 -->
+<script src="./js/urlTemplate.js"></script>
+<script>
+    let oMap = null;
+    let oLayer = [];
+    let oPolygon_VilPop = [];
+
+    oMap = L.map('mapDiv', {
+        crs: L.CRS.EPSG4326,
+        zoomControl: false,
+        minZoom: 7,
+        attributionControl: false
+    }).setView([29.59, 106.59], 12); //定位在重庆
+
+    const legend = L.control({
+        position: 'bottomright'
+    });
+
+    const setLayer = (layerUrls, maxZoom) => {
+        for (let i = 0; i < oLayer.length; i++) {
+            oMap.removeLayer(oLayer[i])
+        }
+        oLayer = []
+        layerUrls.map((item) => {
+            oLayer.push(L.esri.tiledMapLayer({
+                url: item,
+                useCors: false, //是否浏览器在跨域的情况下使用GET请求。
+                maxZoom: maxZoom,
+            }).addTo(oMap));
+        })
+    }
+
+    //加载底图
+    setLayer([urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH, urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH], 17)
+
+
+    // 获得geojson并处理数据
+    const population = () => {
+        $.get("./js/geojson.json", function (response) {
+            let poplData = response.data;
+            let PolygonsCenter = response.geopoint
+            let oLat = null;
+            for (let i = 0; i < poplData.length; i++) {
+                // 处理geoJson数据格式
+                poplData[i].geoJson = JSON.parse(poplData[i].geoJson)
+                //完成坐标转换[纬度, 经度]
+                for (let j = 0; j < poplData[i].geoJson.coordinates[0][0].length; j++) {
+                    oLat = poplData[i].geoJson.coordinates[0][0][j][0];
+                    poplData[i].geoJson.coordinates[0][0][j][0] = poplData[i].geoJson.coordinates[0][0][j][1];
+                    poplData[i].geoJson.coordinates[0][0][j][1] = oLat;
+                }
+            }
+            drawPolygons(poplData, PolygonsCenter)
+        });
+    }
+
+
+    // 绘制边界
+    const drawPolygons = (poplData, PolygonsCenter) => {
+        for (let i = 0; i < poplData.length; i++) {
+            oPolygon_VilPop[i] = L.polygon(poplData[i].geoJson.coordinates[0], {
+                color: 'white',
+                fillColor: getBgColor(poplData[i].population), //获取边界的填充色
+                fillOpacity: 0.6,
+                weight: 3,
+                dashArray: '10'
+            }).addTo(oMap).bindTooltip(poplData[i].villageName + '<br><br>人口' + poplData[i].population + '人', {
+                direction: 'top'
+            }).on({
+                mouseover: highlight, //鼠标移动上去高亮
+                mouseout: resetHighlight, //鼠标移出恢复原样式
+                click: zoomTo //点击最大化
+            });
+        }
+        // 添加图例
+        legend.onAdd = legendHtml;
+        legend.addTo(oMap);
+
+        // 定位到该界限的中心位置
+        oMap.flyToBounds(PolygonsCenter);
+    }
+
+
+    const getBgColor = (d) => {
+        return d > 400 ? '#800026' : d > 300 ? '#BD0026' : d > 200 ? '#FC4E2A' : d > 100 ? '#FD8D3C' : d > 50 ? '#FED976' : '#FFEDA0';
+    }
+
+
+    const legendHtml = (map) => {
+        var div = L.DomUtil.create('div', 'legend locateVP_legend'),
+            grades = [0, 50, 100, 200, 400],
+            labels = [],
+            from, to;
+        for (var i = 0; i < grades.length; i++) {
+            from = grades[i];
+            to = grades[i + 1];
+            labels.push(
+                '<i style="background:' + getBgColor(from + 1) + '"></i> ' +
+                from + (to ? ' &sim; ' + to + '人' : '以上'));
+        }
+        div.innerHTML = labels.join('<br>');
+        return div;
+    };
+
+    const highlight = (e) => {
+        var layer = e.target;
+        layer.setStyle({
+            weight: 6,
+            color: '#fff',
+            fillOpacity: 0.9,
+            dashArray: '0'
+        })
+    }
+
+    const resetHighlight = (e) => {
+        var layer = e.target;
+        layer.setStyle({
+            color: 'white',
+            weight: 3,
+            fillOpacity: 0.6,
+            dashArray: '10'
+        })
+    }
+
+
+    const zoomTo = (e) => {
+        oMap.fitBounds(e.target.getBounds());
+    }
+
+</script>
+
+</html>

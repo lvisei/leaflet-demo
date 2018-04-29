@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>esri-leaflet底图加载,图层管理（加载、移除、调整顺序）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation" style="margin-bottom: 0; border-radius: 0; z-index:2">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Flat UI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#fakelink">Menu Item
+                        <span class="navbar-unread">1</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages
+                        <b class="caret"></b>
+                    </a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a href="#">Something else here</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#fakelink">About Us</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">地图切换
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a id="mapbox_Image" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH,urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH], 17)'>影像地图加标注</a>
+                        </li>
+                        <li>
+                            <a id="mapbox_Vector" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_VEC_MAPSERVER_PATH], 17)'>矢量地图</a>
+                        </li>
+                        <li>
+                            <a id="mapbox_Vector" href='JavaScript:void(0)' onclick='setLayer([urlTemplate.SYS_CQMap_DEM_MAPSERVER_PATH], 13)'>地貌地图</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" action="#" role="search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn">
+                                <span class="fui-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="mapDiv" style="position: absolute;top: 53px;bottom: 0;z-index:1"></div>
+            <!-- 地图面板 -->
+            <!--底部状态栏部分 -->
+        </div>
+    </div>
+</body>
+<script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+<script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./lib/leaflet/leaflet.js"></script>
+<script src="./lib/esri-leaflet-v2.1.2/dist/esri-leaflet.js"></script>
+<!-- esri-leafleat插件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="./js/urlTemplate.js"></script>
+<script>
+    let oMap = null;
+    let oLayer = [];
+
+    oMap = L.map('mapDiv', {
+        crs: L.CRS.EPSG4326,
+        zoomControl: false,
+        minZoom: 7,
+        attributionControl: false
+    }).setView([29.59, 106.59], 12); //定位在重庆
+
+    // 切换底图
+    const setLayer = (layerUrls, maxZoom) => {
+        for (let i = 0; i < oLayer.length; i++) {
+            oMap.removeLayer(oLayer[i]) //将图层在地图上移除
+        }
+        oLayer = [] //制空数组
+        layerUrls.map((item) => {
+            oLayer.push(L.esri.tiledMapLayer({
+                url: item,
+                useCors: false, //是否浏览器在跨域的情况下使用GET请求。
+                maxZoom: maxZoom,
+            }).addTo(oMap));
+        })
+    }
+
+    //加载底图
+    setLayer([urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH, urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH], 17)
+
+    console.log(oLayer)
+</script>
+
+</html>
