@@ -21,8 +21,7 @@
 ---
 #### Demo用到的库
 * Flat-UI [ Flat UI is based on Bootstrap, a comfortable, responsive, and functional framework that simplifies the development of websites.](https://github.com/designmodo/Flat-UI/)Flat-UI是基于Bootstrap的一个扁平化风格web开发框架。
-* leaflet [an open-source JavaScript library
-for mobile-friendly interactive maps.](http://leafletjs.com/reference-1.3.0.html)Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
+* leaflet [an open-source JavaScript library for mobile-friendly interactive maps.](http://leafletjs.com/reference-1.3.0.html)Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
 * Esri Leaflet [A lightweight set of tools for using ArcGIS services with Leaflet.](http://esri.github.io/esri-leaflet/)一个轻量级的工具,基于leaflet利用ArcGIS服务。
 ---
 ### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.html)
