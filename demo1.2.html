@@ -115,6 +115,7 @@
         setView: true,
         maxZoom: 16
     });
+    
     map.on('locationfound', function (e) {
         console.log(e)
         L.marker(e.latlng, {

@@ -94,8 +94,8 @@ const setLayer = (ele) => {
 * 定位成功或失败
 ```
     const h5ApiSuccess = (position) => {
-        var latitude = position.coords.latitude; //纬度
-        var longitude = position.coords.longitude; //经度
+        let latitude = position.coords.latitude; //纬度
+        let longitude = position.coords.longitude; //经度
         console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。')
         return mapInit([latitude, longitude]);
     };
@@ -430,11 +430,11 @@ const getBgColor = (d) => {
 }
 
 const legendHtml = (map) => {
-    var div = L.DomUtil.create('div', 'legend locateVP_legend'),
+    let div = L.DomUtil.create('div', 'legend locateVP_legend'),
         grades = [0, 50, 100, 200, 400],
         labels = [],
         from, to;
-    for (var i = 0; i < grades.length; i++) {
+    for (let i = 0; i < grades.length; i++) {
         from = grades[i];
         to = grades[i + 1];
         labels.push(
@@ -450,7 +450,7 @@ const legendHtml = (map) => {
 
 ```
 const highlight = (e) => {
-    var layer = e.target;
+    let layer = e.target;
     layer.setStyle({
         weight: 6,
         color: '#fff',
@@ -460,7 +460,7 @@ const highlight = (e) => {
 }
 
 const resetHighlight = (e) => {
-    var layer = e.target;
+    let layer = e.target;
     layer.setStyle({
         color: 'white',
         weight: 3,
