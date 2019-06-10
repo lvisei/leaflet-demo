@@ -39,14 +39,14 @@
 
 - 库引用
 
-```JavaScript
+```Html
 <link rel="stylesheet" type="text/css" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
     />
 <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
 <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
 ```
 
-```JavaScript
+```Html
 <script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
 <script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script src="./lib/leaflet/leaflet.js"></script>
@@ -92,8 +92,8 @@ const setLayer = (ele) => {
 
 - 库引用 如上 Demo 1
 
-```JavaScript
-//marker高亮显示库引用
+```Html
+<!-- marker高亮显示库引用 -->
 <link rel="stylesheet" href="./lib/leaflet.marker.highlight/leaflet.marker.highlight.css">
 <script src="./lib/leaflet.marker.highlight/leaflet.marker.highlight.js"></script>
 ```
@@ -154,7 +154,7 @@ const setLayer = (ele) => {
 
 > - 更多了解 geolocation 对象，可参考[MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
 > - 更多了解使用 marker 高亮显示，可参考[leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight)插件
-> - 基于 Demo 1 利用 eaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.2.html)
+> - 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.2.html)
 
 ### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo2.html)
 
@@ -235,14 +235,14 @@ let polygon = L.polygon(
 
 - 库引用
 
-```JavaScript
+```Html
 <link rel="stylesheet" type="text/css"  href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
     />
 <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
 <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
 ```
 
-```
+```Html
 <script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
 <script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script src="./lib/leaflet/leaflet.js"></script>
