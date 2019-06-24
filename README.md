@@ -19,9 +19,10 @@
 > - 坐标转换（地理与投影、不同地理坐标系）：
 > - 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：
 > - 动态监控（固定点状态切换、车辆监控）：
->   ![](https://user-gold-cdn.xitu.io/2018/2/25/161cd7239e171384?w=1920&h=959&f=png&s=222128)
+>  ![tree_01](https://user-images.githubusercontent.com/26923747/60000648-37171b00-9697-11e9-9f3d-437796c5b620.png)
 >
-> 4. [Leaflet API](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/tree/Leaflet%20API.png)![](https://user-gold-cdn.xitu.io/2018/3/1/161dd4951441cce1?w=691&h=1217&f=png&s=54115)
+> 4. [Leaflet API](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/tree/Leaflet%20API.png)![Leaflet API 0](https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png)
+
 
 ---
 
@@ -35,7 +36,8 @@
 
 ### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/25/161cd7e9bfff52ad?w=1920&h=957&f=jpeg&s=2237468)
+![2018-02-25_230200](https://user-images.githubusercontent.com/26923747/60000866-a55bdd80-9697-11e9-8b92-fbd69160eaa6.jpg)
+
 
 - 库引用
 
@@ -88,7 +90,8 @@ const setLayer = (ele) => {
 
 ### 基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.1.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/26/161d283e74f18d76?w=964&h=480&f=gif&s=862550)
+![ezgif com-video-to-gif 01](https://user-images.githubusercontent.com/26923747/60000914-cd4b4100-9697-11e9-832a-bb59c68102ff.gif)
+
 
 - 库引用 如上 Demo 1
 
@@ -158,7 +161,8 @@ const setLayer = (ele) => {
 
 ### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo2.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/28/161dcd420e164009?w=964&h=480&f=gif&s=2119022)
+![ezgif com-video-to-gif 00](https://user-images.githubusercontent.com/26923747/60000954-ea800f80-9697-11e9-92f7-75a560c3f19c.gif)
+
 
 - 库引用 如上 Demo 1
 
@@ -231,7 +235,8 @@ let polygon = L.polygon(
 
 ### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo3.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/28/161dce7e881a2362?w=1920&h=959&f=jpeg&s=2962698)
+![2018-02-28_223709](https://user-images.githubusercontent.com/26923747/60000981-fd92df80-9697-11e9-91d3-03d818e6a541.jpg)
+
 
 - 库引用
 
@@ -300,7 +305,8 @@ const setLayer = (layerUrls, maxZoom) => {
 
 ### PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo4.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/28/161dcf0290ac287b?w=964&h=480&f=gif&s=3275194)
+![ezgif com-video-to-gif02](https://user-images.githubusercontent.com/26923747/60001048-27e49d00-9698-11e9-9d22-8534b9091da2.gif)
+
 
 - 库引用 如上 Demo 1
 - 画一个圆
@@ -367,7 +373,7 @@ polygon.bindTooltip('this is 个多边形');
 
 ### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo5.html)
 
-![](https://user-gold-cdn.xitu.io/2018/2/28/161dd0f8edbe36e5?w=964&h=480&f=gif&s=3360015)
+![ezgif com-video-to-gif03](https://user-images.githubusercontent.com/26923747/60001066-32069b80-9698-11e9-8f96-0c7bd09b4a69.gif)
 
 - 库引用 如上 Demo 1
 - 画一个 circle 并绑定一个 Popup
@@ -413,7 +419,8 @@ map.on('click', function (e) {
 
 ### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo6.html)
 
-![](https://user-gold-cdn.xitu.io/2018/3/1/161dd3b18402adcc?w=964&h=480&f=gif&s=5224505)
+![ezgif com-video-to-gif04](https://user-images.githubusercontent.com/26923747/60001082-3df25d80-9698-11e9-9901-4b1d660b1fbc.gif)
+
 
 - 库引用 如上 Demo 1
 
@@ -575,4 +582,4 @@ const zoomTo = (e) => {
 - [Awesome GIS（GIS Tech Stack 技术栈）](https://www.jianshu.com/p/3b3efa92dd6d)
 - [麻辣 GIS Leaflet 学习笔记](http://malagis.com/learning-leaflet-js-note.html)
 
-> 持续更新中 原文地址： https://juejin.im/post/5a658614f265da3e3f4cce0e
+> 持续更新中 首发地址： https://juejin.im/post/5a658614f265da3e3f4cce0e
