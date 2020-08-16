@@ -1,32 +1,33 @@
-### 入门 Leaflet 之小 Demo
+## 入门 Leaflet 之小 Demo
+
+### 写在前面
+
+> WebGIS 开发基础之 Leaflet
+
+1. GIS 基本概念：GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；
+
+2. GIS 开发概述：架构模式、常用平台和 SDK、二维三维
+
+3. 使用 Leaflet 开发常用功能：
+ - 地图加载（底图类型、切换）：
+ - 地图操作（缩放、平移、定位/书签、动画）：
+ - 图层管理（加载、移除、调整顺序）：
+ - 要素标绘（点/聚簇、线、面，符号化/静态动态）：
+ - 属性标注（字段可选、样式定制）：
+ - 专题地图（点、线、面，渲染）：
+ - 查询定位（属性查询、空间查询/周边搜索/缓冲区/面查点线面/点线查面、图属互查、综合查询）：
+ - 信息窗口（入口、Popup、定制）：
+ - 坐标转换（地理与投影、不同地理坐标系）：
+ - 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：
+ - 动态监控（固定点状态切换、车辆监控）：
+  ![tree_01](https://user-images.githubusercontent.com/26923747/60000648-37171b00-9697-11e9-9f3d-437796c5b620.png)
+
+4. [Leaflet API](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/tree/Leaflet%20API.png)![Leaflet API 0](https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png)
+
 
 ---
 
-> 写在前面 ---- WebGIS 开发基础之 Leaflet
->
-> 1. GIS 基本概念：GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；
-> 2. GIS 开发概述：架构模式、常用平台和 SDK、二维三维
-> 3. 使用 Leaflet 开发常用功能
->
-> - 地图加载（底图类型、切换）：
-> - 地图操作（缩放、平移、定位/书签、动画）：
-> - 图层管理（加载、移除、调整顺序）：
-> - 要素标绘（点/聚簇、线、面，符号化/静态动态）：
-> - 属性标注（字段可选、样式定制）：
-> - 专题地图（点、线、面，渲染）：
-> - 查询定位（属性查询、空间查询/周边搜索/缓冲区/面查点线面/点线查面、图属互查、综合查询）：
-> - 信息窗口（入口、Popup、定制）：
-> - 坐标转换（地理与投影、不同地理坐标系）：
-> - 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：
-> - 动态监控（固定点状态切换、车辆监控）：
->  ![tree_01](https://user-images.githubusercontent.com/26923747/60000648-37171b00-9697-11e9-9f3d-437796c5b620.png)
->
-> 4. [Leaflet API](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/tree/Leaflet%20API.png)![Leaflet API 0](https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png)
-
-
----
-
-#### Demo 用到的库
+### Demo 用到的库
 
 - Flat-UI [ Flat UI is based on Bootstrap, a comfortable, responsive, and functional framework that simplifies the development of websites.](https://github.com/designmodo/Flat-UI/)Flat-UI 是基于 Bootstrap 的一个扁平化风格 web 开发框架。
 - leaflet [an open-source JavaScript library for mobile-friendly interactive maps.](http://leafletjs.com/reference-1.3.0.html)Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
@@ -34,7 +35,7 @@
 
 ---
 
-### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.html)
+### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.html)
 
 ![2018-02-25_230200](https://user-images.githubusercontent.com/26923747/60000866-a55bdd80-9697-11e9-8b92-fbd69160eaa6.jpg)
 
@@ -68,7 +69,7 @@ const map = L.map("mapDiv", {
     let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
        maxZoom: 17, //最大视图
         minZoom: 2, //最小视图
-        attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet_Demo">WebGIS-for-learnning</a>'
+        attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">WebGIS-for-learnning</a>'
     }).addTo(map);
 
 const setLayer = (ele) => {
@@ -88,7 +89,7 @@ const setLayer = (ele) => {
 }
 ```
 
-### 基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.1.html)
+### 基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.1.html)
 
 ![ezgif com-video-to-gif 01](https://user-images.githubusercontent.com/26923747/60000914-cd4b4100-9697-11e9-832a-bb59c68102ff.gif)
 
@@ -146,7 +147,7 @@ const setLayer = (ele) => {
         Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
             maxZoom: 17, //最大视图
             minZoom: 2, //最小视图
-            attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet_Demo">WebGIS-for-learnning</a>'
+            attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">WebGIS-for-learnning</a>'
         }).addTo(map);
 
         L.marker(LatLng, {
@@ -157,9 +158,9 @@ const setLayer = (ele) => {
 
 > - 更多了解 geolocation 对象，可参考[MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
 > - 更多了解使用 marker 高亮显示，可参考[leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight)插件
-> - 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo1.2.html)
+> - 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.2.html)
 
-### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo2.html)
+### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo2.html)
 
 ![ezgif com-video-to-gif 00](https://user-images.githubusercontent.com/26923747/60000954-ea800f80-9697-11e9-92f7-75a560c3f19c.gif)
 
@@ -233,7 +234,7 @@ let polygon = L.polygon(
     }).addTo(map);  //地图上绘制一个多边形
 ```
 
-### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo3.html)
+### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo3.html)
 
 ![2018-02-28_223709](https://user-images.githubusercontent.com/26923747/60000981-fd92df80-9697-11e9-91d3-03d818e6a541.jpg)
 
@@ -303,7 +304,7 @@ const setLayer = (layerUrls, maxZoom) => {
 
 > 不同的底图可能图层数不一样，就可能造成浏览器去请求不存在的图层，以及给用户展示出空白区域的不好体验，所以切换图层时候应注意设置最大及最小缩放值。
 
-### PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo4.html)
+### PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo4.html)
 
 ![ezgif com-video-to-gif02](https://user-images.githubusercontent.com/26923747/60001048-27e49d00-9698-11e9-9d22-8534b9091da2.gif)
 
@@ -371,7 +372,7 @@ polygon.bindTooltip('this is 个多边形');
 // map.fitBounds(polygon.getBounds());
 ```
 
-### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo5.html)
+### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo5.html)
 
 ![ezgif com-video-to-gif03](https://user-images.githubusercontent.com/26923747/60001066-32069b80-9698-11e9-8f96-0c7bd09b4a69.gif)
 
@@ -417,7 +418,7 @@ map.on('click', function (e) {
 });
 ```
 
-### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/demo6.html)
+### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo6.html)
 
 ![ezgif com-video-to-gif04](https://user-images.githubusercontent.com/26923747/60001082-3df25d80-9698-11e9-9901-4b1d660b1fbc.gif)
 
@@ -437,7 +438,7 @@ const population = () => {
 }
 ```
 
-> 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/Leaflet_Demo/blob/master/js/geojson.json)
+> 模拟后台返回的数据[geojson](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/js/geojson.json)
 
 - 绘制边界并添加图例
 
