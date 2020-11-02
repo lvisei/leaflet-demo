@@ -1,50 +1,62 @@
-## 入门 Leaflet 之小 Demo
+# 入门 Leaflet 之小 Demo
 
-### 写在前面
 
-> WebGIS 开发基础之 Leaflet
 
-1. GIS 基本概念：GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；
+## 写在前面
 
-2. GIS 开发概述：架构模式、常用平台和 SDK、二维三维
+> WebGIS 开发基础之 Leaflet 
 
-3. 使用 Leaflet 开发常用功能：
- - 地图加载（底图类型、切换）：
- - 地图操作（缩放、平移、定位/书签、动画）：
- - 图层管理（加载、移除、调整顺序）：
- - 要素标绘（点/聚簇、线、面，符号化/静态动态）：
- - 属性标注（字段可选、样式定制）：
- - 专题地图（点、线、面，渲染）：
- - 查询定位（属性查询、空间查询/周边搜索/缓冲区/面查点线面/点线查面、图属互查、综合查询）：
- - 信息窗口（入口、Popup、定制）：
- - 坐标转换（地理与投影、不同地理坐标系）：
- - 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）：
- - 动态监控（固定点状态切换、车辆监控）：
-  ![tree_01](https://user-images.githubusercontent.com/26923747/60000648-37171b00-9697-11e9-9f3d-437796c5b620.png)
+### 1. GIS 基本概念：
 
-4. [Leaflet API](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/tree/Leaflet%20API.png)![Leaflet API 0](https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png)
+GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；
 
+### 2.  GIS 开发概述：
+
+架构模式、常用平台和 SDK、二维、三维
+
+### 3. 使用 Leaflet 开发常用功能：
+
+- 地图加载（底图类型、切换）
+- 地图操作（缩放、平移、定位/书签、动画）
+- 图层管理（加载、移除、调整顺序）
+- 要素标绘（点/聚簇、线、面，符号化/静态动态）
+- 属性标注（字段可选、样式定制）
+- 专题地图（点、线、面，渲染）
+- 查询定位（属性查询、空间查询/周边搜索/缓冲区/面查点线面/点线查面、图属互查、综合查询）
+- 信息窗口（入口、Popup、定制）
+- 坐标转换（地理与投影、不同地理坐标系）
+- 空间运算（长度面积测量、点取坐标、缓冲区、相交包含关系）
+- 动态监控（固定点状态切换、车辆监控）
+
+### 4. Leaflet 常用 API
+
+<a href="https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png">![Leaflet API](https://user-images.githubusercontent.com/26923747/60000672-41391980-9697-11e9-82b1-9297332bb589.png)</a>
+
+
+
+## Demo 用到的库
+
+- [Flat-UI](https://github.com/designmodo/Flat-UI/) - 基于 Bootstrap 的一个扁平化风格 web 开发框架。
+- [Leaflet](http://leafletjs.com/reference-1.3.0.html) - 一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
+- [Esri Leaflet](http://esri.github.io/esri-leaflet/) - 一个轻量级的工具包，基于 leaflet 利用 ArcGIS 服务。
 
 ---
 
-### Demo 用到的库
 
-- Flat-UI [ Flat UI is based on Bootstrap, a comfortable, responsive, and functional framework that simplifies the development of websites.](https://github.com/designmodo/Flat-UI/)Flat-UI 是基于 Bootstrap 的一个扁平化风格 web 开发框架。
-- leaflet [an open-source JavaScript library for mobile-friendly interactive maps.](http://leafletjs.com/reference-1.3.0.html)Leaflet 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。
-- Esri Leaflet [A lightweight set of tools for using ArcGIS services with Leaflet.](http://esri.github.io/esri-leaflet/)一个轻量级的工具,基于 leaflet 利用 ArcGIS 服务。
 
----
+## PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.html)
 
-### PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.html)
 
-![2018-02-25_230200](https://user-images.githubusercontent.com/26923747/60000866-a55bdd80-9697-11e9-8b92-fbd69160eaa6.jpg)
+
+![](https://user-images.githubusercontent.com/26923747/60000866-a55bdd80-9697-11e9-8b92-fbd69160eaa6.jpg)
+
+
 
 
 - 库引用
 
 ```Html
-<link rel="stylesheet" type="text/css" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
-    />
+<link rel="stylesheet" type="text/css" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="./lib/Flat-UI-master/dist/css/flat-ui.min.css">
 <link rel="stylesheet" href="./lib/leaflet/leaflet.css">
 ```
@@ -66,7 +78,7 @@ const map = L.map("mapDiv", {
         // minZoom: 1,
         attributionControl: true,
     }).setView([30.6268660000, 104.1528940000], 18);//定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
-    let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
        maxZoom: 17, //最大视图
         minZoom: 2, //最小视图
         attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">WebGIS-for-learnning</a>'
@@ -89,9 +101,15 @@ const setLayer = (ele) => {
 }
 ```
 
-### 基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.1.html)
 
-![ezgif com-video-to-gif 01](https://user-images.githubusercontent.com/26923747/60000914-cd4b4100-9697-11e9-832a-bb59c68102ff.gif)
+
+## PART 1.1：基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.1.html)
+
+
+
+![gif](https://user-images.githubusercontent.com/26923747/60000914-cd4b4100-9697-11e9-832a-bb59c68102ff.gif)
+
+
 
 
 - 库引用 如上 Demo 1
@@ -160,9 +178,15 @@ const setLayer = (ele) => {
 > - 更多了解使用 marker 高亮显示，可参考[leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight)插件
 > - 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.2.html)
 
+
+
 ### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo2.html)
 
-![ezgif com-video-to-gif 00](https://user-images.githubusercontent.com/26923747/60000954-ea800f80-9697-11e9-92f7-75a560c3f19c.gif)
+
+
+![gif](https://user-images.githubusercontent.com/26923747/60000954-ea800f80-9697-11e9-92f7-75a560c3f19c.gif)
+
+
 
 
 - 库引用 如上 Demo 1
@@ -234,9 +258,15 @@ let polygon = L.polygon(
     }).addTo(map);  //地图上绘制一个多边形
 ```
 
-### PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo3.html)
+
+
+## PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo3.html)
+
+
 
 ![2018-02-28_223709](https://user-images.githubusercontent.com/26923747/60000981-fd92df80-9697-11e9-91d3-03d818e6a541.jpg)
+
+
 
 
 - 库引用
@@ -304,9 +334,15 @@ const setLayer = (layerUrls, maxZoom) => {
 
 > 不同的底图可能图层数不一样，就可能造成浏览器去请求不存在的图层，以及给用户展示出空白区域的不好体验，所以切换图层时候应注意设置最大及最小缩放值。
 
-### PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo4.html)
 
-![ezgif com-video-to-gif02](https://user-images.githubusercontent.com/26923747/60001048-27e49d00-9698-11e9-9d22-8534b9091da2.gif)
+
+## PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo4.html)
+
+
+
+![gif](https://user-images.githubusercontent.com/26923747/60001048-27e49d00-9698-11e9-9d22-8534b9091da2.gif)
+
+
 
 
 - 库引用 如上 Demo 1
@@ -372,9 +408,15 @@ polygon.bindTooltip('this is 个多边形');
 // map.fitBounds(polygon.getBounds());
 ```
 
-### PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo5.html)
+
+
+## PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo5.html)
+
+
 
 ![ezgif com-video-to-gif03](https://user-images.githubusercontent.com/26923747/60001066-32069b80-9698-11e9-8f96-0c7bd09b4a69.gif)
+
+
 
 - 库引用 如上 Demo 1
 - 画一个 circle 并绑定一个 Popup
@@ -418,9 +460,15 @@ map.on('click', function (e) {
 });
 ```
 
-### PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo6.html)
 
-![ezgif com-video-to-gif04](https://user-images.githubusercontent.com/26923747/60001082-3df25d80-9698-11e9-9901-4b1d660b1fbc.gif)
+
+## PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo6.html)
+
+
+
+![gif](https://user-images.githubusercontent.com/26923747/60001082-3df25d80-9698-11e9-9901-4b1d660b1fbc.gif)
+
+
 
 
 - 库引用 如上 Demo 1
@@ -540,9 +588,11 @@ const zoomTo = (e) => {
 }
 ```
 
-### 写在后面
 
-#### 国内常用地图服务资源加载插件
+
+## 写在后面
+
+### 国内常用地图服务资源加载插件
 
 > Leaflet.ChineseTmsProviders [Provider for Chinese Tms Service](https://github.com/htoooth/Leaflet.ChineseTmsProviders)
 
@@ -550,7 +600,7 @@ const zoomTo = (e) => {
 
 - 使用方法很简单可点击上面链接去 GitHub 看使用说明，或拉[这个 demo](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet.ChineseTmsProviders_Demo)下来来瞧一瞧代码。
 
-#### 优化 marker 相关的插件
+### 优化 marker 相关的插件
 
 - 提供了丰富多彩的图标 [Leaflet.awesome-markers](https://github.com/lvoogdt/Leaflet.awesome-markers), See the [demo map](http://jsfiddle.net/VPzu4/92/)
 
@@ -562,25 +612,31 @@ const zoomTo = (e) => {
 
 - 优化在边框上显示不在当前视野中的 marker [Leaflet.EdgeMarker](https://github.com/ubergesundheit/Leaflet.EdgeMarker), See the [demo map](http://ubergesundheit.github.io/Leaflet.EdgeMarker/)
 
-#### 模块化开发的加载包注意的问题
+### Leaflet 学习资料整理
+
+- [Leaflet-Develop-Guide 🍃](https://github.com/liuvigongzuoshi/summarize-web-resources/blob/master/leaflet/leaflet-develop-guide.md) -开发文档及常用插件小结
+
+### 模块化开发的加载包注意的问题
 
 - 引 leaflet 包的时候不要忘记引用包里的 css `import 'leaflet/dist/leaflet.css';`
 
-#### 关于 Leaflet 和 esri-leaflet 一起使用 L.esri.TiledMapLayer 加载 ArcGIS 服务切片底图时，控制台打印报错 `Uncaught ReferenceError: proj4 is not defined`
+### 关于 Leaflet 和 esri-leaflet 一起使用 L.esri.TiledMapLayer 加载 ArcGIS 服务切片底图时，控制台打印报错 `Uncaught ReferenceError: proj4 is not defined`
 
 - 查看了下源码 `if (!proj4) { warn('L.esri.TiledMapLayer is using a non-mercator spatial reference. Support may be available through Proj4Leaflet http://esri.github.io/esri-leaflet/examples/non-mercator-projection.html');}` 问题就出在这里，esri-leaflet 里的一个插件 proj4leaflet 依赖[proj4](https://github.com/proj4js/proj4js)，所以需要手动引入 proj4 这个包。
 - 这个 GitHub 上面的提问及回答 [Github esri-leaflet Issues](https://github.com/Esri/esri-leaflet/issues/1019)
 - 如果你是模块化开发，需要再`npm i proj4` 然后再引入进来好了 `import * as proj4 from 'proj4'; window['proj4'] = proj4;`
-- 如果你是常规开发，直接添加一个 script 标签引用 CDN 资源上托管的[Proj4js](https://cdnjs.com/libraries/proj4js)就是了 `<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4-src.js"></script>`
+- 如果你是常规开发，直接添加一个 script 标签引用 CDN 资源上托管的  [Proj4js](https://cdnjs.com/libraries/proj4js)  就是了 `<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4-src.js"></script>`
 
-#### Leaflet 学习资料整理
 
-- [Leaflet-Develop-Guide 🍃](https://github.com/liuvigongzuoshi/summarize-web-resources/blob/master/leaflet/leaflet-develop-guide.md) -开发文档及常用插件小结
 
-### 参考
+## 参考
 
 - [GIS 制图乐园 esri-leaflet 入门教程（1）-leaflet 介绍](http://blog.csdn.net/liyuanxiang1984/article/details/54601985)
 - [Awesome GIS（GIS Tech Stack 技术栈）](https://www.jianshu.com/p/3b3efa92dd6d)
 - [麻辣 GIS Leaflet 学习笔记](http://malagis.com/learning-leaflet-js-note.html)
 
-> 持续更新中 首发地址： https://juejin.im/post/5a658614f265da3e3f4cce0e
+
+
+*本文 DEMO 地址: https://github.com/liuvigongzuoshi/leaflet-demo*
+
+*原文首发地址 [https://github.com/liuvigongzuoshi/blog](https://github.com/liuvigongzuoshi/leaflet-demo)*
