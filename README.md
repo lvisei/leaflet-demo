@@ -141,8 +141,8 @@ if (navigator.geolocation) {
 
 ```JavaScript
 const h5ApiSuccess = (position) => {
-  var latitude = position.coords.latitude; //纬度
-  var longitude = position.coords.longitude; //经度
+  const latitude = position.coords.latitude; //纬度
+  const longitude = position.coords.longitude; //经度
   console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。');
   return mapInit([latitude, longitude]);
 };
