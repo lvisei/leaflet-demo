@@ -16,5 +16,8 @@ const urlTemplate = {
   // 矢量地图
   SYS_VEC_MAPSERVER_PATH: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile',
   // 地形地图
-  SYS_DEM_MAPSERVER_PATH: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer',
+  SYS_DEM_MAPSERVER_PATH: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer',
+  // 地形注记
+  SYS_DEM_LABELS_MAPSERVER_PATH:
+    'http://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer',
 };

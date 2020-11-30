@@ -50,14 +50,8 @@
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav navbar-left">
-          <li>
-            <a href="#fakelink"
-              >Menu Item
-              <span class="navbar-unread">1</span>
-            </a>
-          </li>
           <li class="dropdown">
-            <a href="JavaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
               >地图切换
               <b class="caret"></b>
             </a>
@@ -66,15 +60,15 @@
                 <a
                   id="mapbox_Image"
                   href="JavaScript:void(0)"
-                  onclick="setLayer([urlTemplate.SYS_IMG_MAPSERVER_PATH,urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH], 17)"
-                  >影像地图</a
+                  onclick="setLayer([urlTemplate.SYS_IMG_MAPSERVER_PATH,urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH], 19)"
+                  >影像地图加标注</a
                 >
               </li>
               <li>
                 <a
                   id="mapbox_Vector"
                   href="JavaScript:void(0)"
-                  onclick="setLayer([urlTemplate.SYS_VEC_MAPSERVER_PATH], 17)"
+                  onclick="setLayer([urlTemplate.SYS_VEC_MAPSERVER_PATH], 19)"
                   >矢量地图</a
                 >
               </li>
@@ -82,7 +76,7 @@
                 <a
                   id="mapbox_Vector"
                   href="JavaScript:void(0)"
-                  onclick="setLayer([urlTemplate.SYS_DEM_MAPSERVER_PATH], 13)"
+                  onclick="setLayer([urlTemplate.SYS_DEM_MAPSERVER_PATH, urlTemplate.SYS_DEM_LABELS_MAPSERVER_PATH], 13)"
                   >地貌地图</a
                 >
               </li>
@@ -118,9 +112,9 @@
   <script src="./lib/Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
   <script src="./lib/Flat-UI-master/dist/js/flat-ui.js"></script>
   <script src="./lib/leaflet/leaflet.js"></script>
-  <script src="./lib/esri-leaflet-v2.1.2/dist/esri-leaflet.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
   <!-- leafleat插件 -->
+  <script src="./lib/esri-leaflet-v2.1.2/dist/esri-leaflet.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/proj4js/2.6.2/proj4.js"></script>
   <script src="./js/urlTemplate.js"></script>
   <script>
     let oMap = null;
@@ -128,7 +122,7 @@
     let oPolygon_VilPop = [];
 
     oMap = L.map('mapDiv', {
-      crs: L.CRS.EPSG4326,
+      crs: L.CRS.EPSG3857,
       zoomControl: false,
       minZoom: 7,
       attributionControl: false,
@@ -157,7 +151,7 @@
     };
 
     //加载底图
-    setLayer([urlTemplate.SYS_IMG_MAPSERVER_PATH, urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH], 17);
+    setLayer([urlTemplate.SYS_IMG_MAPSERVER_PATH, urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH], 19);
 
     // 请求geojson并处理数据
     const population = () => {
@@ -217,12 +211,12 @@
     };
 
     const legendHtml = (map) => {
-      var div = L.DomUtil.create('div', 'legend locateVP_legend'),
+      let div = L.DomUtil.create('div', 'legend locateVP_legend'),
         grades = [0, 50, 100, 200, 400],
         labels = [],
         from,
         to;
-      for (var i = 0; i < grades.length; i++) {
+      for (const i = 0; i < grades.length; i++) {
         from = grades[i];
         to = grades[i + 1];
         labels.push(
@@ -234,7 +228,7 @@
     };
 
     const highlight = (e) => {
-      var layer = e.target;
+      const layer = e.target;
       layer.setStyle({
         weight: 6,
         color: '#fff',
@@ -244,7 +238,7 @@
     };
 
     const resetHighlight = (e) => {
-      var layer = e.target;
+      const layer = e.target;
       layer.setStyle({
         color: 'white',
         weight: 3,
