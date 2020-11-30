@@ -6,7 +6,7 @@
 
 > WebGIS 开发基础之 Leaflet 
 
-### 1. GIS 基本概念：
+### 1. GIS Web开发基本概念：
 
 GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Polygon）、Renderer、Scale、Project、Coordinates；
 
@@ -52,8 +52,7 @@ GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Poly
 
 
 
-
-- 库引用
+1. 库引用
 
 ```Html
 <link rel="stylesheet" type="text/css" href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"/>
@@ -68,37 +67,41 @@ GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Poly
 <script src="./js/urlTemplate.js"></script>
 ```
 
-- 地图加载与切换
+2. 地图加载与切换
 
 ```JavaScript
-const map = L.map("mapDiv", {
-        crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系,互联网地图主流坐标系
-        // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
-        zoomControl: true,
-        // minZoom: 1,
-        attributionControl: true,
-    }).setView([30.6268660000, 104.1528940000], 18);//定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+const map = L.map('mapDiv', {
+  crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
+  // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
+  zoomControl: true,
+  // minZoom: 1,
+  attributionControl: false,
+}).setView([31.626866, 104.152894], 18); //定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
 let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
-       maxZoom: 17, //最大视图
-        minZoom: 2, //最小视图
-        attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">WebGIS-for-learnning</a>'
-    }).addTo(map);
+  maxZoom: 17, //最大视图
+  minZoom: 2, //最小视图
+  attribution:
+  'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">leaflet-demo</a>',
+}).addTo(map);
+
+console.log(Baselayer);
 
 const setLayer = (ele) => {
-    map.removeLayer(Baselayer)
-    if (ele == "mapbox_Image") {
-        Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
-            maxZoom: 17,
-            minZoom: 2
-        }).addTo(map);
-    } else if (ele == "mapbox_Vector") {
-        Baselayer = L.tileLayer(urlTemplate.mapbox_Vector, {
-            maxZoom: 17,
-            // minZoom: 2
-        }).addTo(map);
-        console.log(Baselayer)
-    }
-}
+  map.removeLayer(Baselayer);
+
+  if (ele == 'mapbox_Image') {
+    Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+      maxZoom: 17,
+      minZoom: 2,
+    }).addTo(map);
+  } else if (ele == 'mapbox_Vector') {
+    Baselayer = L.tileLayer(urlTemplate.mapbox_Vector, {
+      maxZoom: 17,
+      minZoom: 1,
+    }).addTo(map);
+    console.log(Baselayer);
+  }
+};
 ```
 
 
@@ -111,8 +114,7 @@ const setLayer = (ele) => {
 
 
 
-
-- 库引用 如上 Demo 1
+1. 库引用 如上 Demo 1
 
 ```Html
 <!-- marker高亮显示库引用 -->
@@ -120,63 +122,67 @@ const setLayer = (ele) => {
 <script src="./lib/leaflet.marker.highlight/leaflet.marker.highlight.js"></script>
 ```
 
-- 判断浏览器是否支持
+2. 判断浏览器是否支持
 
-```JavaScript
-    let map;
-    let Baselayer;
-    // 使用H5 API定位 定位在当前位置
-    if (navigator.geolocation) {
-        console.log('/* 地理位置服务可用 */')
-        navigator.geolocation.getCurrentPosition(h5ApiSuccess, h5ApiError);
-    } else {
-        console.log('/* 地理位置服务不可用 */')
-        mapInit([30.374558, 104.09144]);//指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
-    }
+```javaScript
+let map;
+let Baselayer;
+// 使用H5 API定位 定位在当前位置
+if (navigator.geolocation) {
+  console.log('/* 地理位置服务可用 */');
+  navigator.geolocation.getCurrentPosition(h5ApiSuccess, h5ApiError);
+} else {
+  console.log('/* 地理位置服务不可用 */');
+  mapInit([30.626866, 104.152894]); //指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+}
 ```
 
-- 定位成功或失败
+3. 定位成功或失败处理方法
 
 ```JavaScript
-    const h5ApiSuccess = (position) => {
-        let latitude = position.coords.latitude; //纬度
-        let longitude = position.coords.longitude; //经度
-        console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。')
-        return mapInit([latitude, longitude]);
-    };
+const h5ApiSuccess = (position) => {
+  var latitude = position.coords.latitude; //纬度
+  var longitude = position.coords.longitude; //经度
+  console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。');
+  return mapInit([latitude, longitude]);
+};
 
-    const h5ApiError = () => {
-        console.log('/* 地理位置请求失败 */')
-        mapInit([30.374558, 104.09144]);//指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
-    };
+const h5ApiError = () => {
+  console.log('/* 地理位置请求失败 */');
+  mapInit([31.626866, 104.152894]); //指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+};
 ```
 
-- 成功后初始化底图
+4. 成功后初始化底图
 
 ```JavaScript
-    const mapInit = (LatLng) => {
-        map = L.map("mapDiv", {
-            crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系
-            // crs: L.CRS.EPSG4326, //国内的坐标参考系
-            zoomControl: true,
-            // minZoom: 1,
-            attributionControl: true,
-        }).setView(LatLng, 18);//定位在当前位置
-        Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
-            maxZoom: 17, //最大视图
-            minZoom: 2, //最小视图
-            attribution: 'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">WebGIS-for-learnning</a>'
-        }).addTo(map);
+const mapInit = (LatLng) => {
+  map = L.map('mapDiv', {
+    crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
+    // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
+    zoomControl: true,
+    // minZoom: 1,
+    attributionControl: true,
+  }).setView(LatLng, 18); //定位在当前位置
+  Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+    maxZoom: 17, //最大视图
+    minZoom: 2, //最小视图
+    attribution:
+    'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">leaflet-demo</a>',
+  }).addTo(map);
 
-        L.marker(LatLng, {
-            highlight: "permanent" //永久高亮显示
-        }).addTo(map);
-    }
+  L.marker(LatLng, {
+    highlight: 'permanent', //永久高亮显示
+  }).addTo(map);
+
+  console.log(Baselayer);
+};
 ```
 
-> - 更多了解 geolocation 对象，可参考[MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
-> - 更多了解使用 marker 高亮显示，可参考[leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight)插件
-> - 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.2.html)
+5. 更多内容
+- 更多了解 geolocation 对象，可参考 [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
+- 更多了解使用 marker 高亮显示，可参考 [leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight) 插件
+- 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.2.html)
 
 
 
@@ -188,74 +194,97 @@ const setLayer = (ele) => {
 
 
 
+1. 库引用 如上 Demo 1
 
-- 库引用 如上 Demo 1
+2. 设置地图缩放到指定图层
 
-- 设置地图缩放到指定图层
-
-```JavaScript
-map.setZoom(10, {
-  // animate: false
-})  //设置地图缩放到
+```javaScript
+const setZoom = () => {
+  map.setZoom(10, {
+    // animate: false
+  }); //设置地图缩放到
+};
 ```
 
-- 图层往里进一个图层，放大
+3. 图层往里进一个图层，放大
 
-```JavaScript
-map.zoomIn() //图层往里进一个图层，放大
-//map.zoomOut()  //图层往里出一个图层，缩小
+```javaScript
+const setZoomIn = () => {
+  map.zoomIn(); //图层往里进一个图层，放大
+};
+
+const setZoomOut = () => {
+  map.zoomOut(); //图层往里出一个图层，缩小
+};
 ```
 
-- 地图平移至中心点
+4. 地图平移至中心点
 
-```JavaScript
-map.panTo([37.91082, 128.73583], {
-    animate: true
-}) //地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
+```javaScript
+const panTo = () => {
+  map.panTo([37.91082, 128.73583], {
+    animate: true,
+  }); //地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
+};
 ```
 
-- 地图飞到中心点
+5. 地图飞到中心点
 
-```JavaScript
-map.flyTo([36.52, 120.31]); // 点到点的抛物线动画，平移加缩放动画
+```javaScript
+const flyTo = () => {
+  map.flyTo([36.52, 120.31]); // 点到点的抛物线动画，平移加缩放动画
+};
 ```
 
 > 注意：尽量避免 setZoom()等地图缩放方法与 flyTo、flyToBounds 一起合用，因为这两类地图操作方法都有各自的缩放值，造成动画不流畅、不能定位到目的点。
 
-- 地图飞到边界的合适的位置
+6. 地图飞到边界的合适的位置
 
-```JavaScript
-map.flyToBounds(polygon.getBounds());   //getBounds（获取边界）：返回地图视图的经纬度边界。
-    //飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
+```javaScript
+const flyToBounds = () => {
+  map.flyToBounds(polygon.getBounds()); //getBounds（获取边界）：返回地图视图的经纬度边界。
+  //飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
+};
 
 let polygon = L.polygon(
-          [[37, -109.05],
-          [41, -109.03],
-          [41, -102.05],
-          [37, -102.04]],
-     [40.774, -74.125], {
-       color: 'green',
-       fillColor: '#f03',
-       fillOpacity: 0.5
-    }).addTo(map);  //地图上绘制一个多形
+  [
+    [37, -109.05],
+    [41, -109.03],
+    [41, -102.05],
+    [37, -102.04],
+  ],
+  [40.774, -74.125],
+  {
+    color: 'green',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+  }
+).addTo(map); //地图上绘制一个多边形
 ```
 
-- 地图定位到边界的合适的位置
+7. 地图定位到边界的合适的位置
 
 ```JavaScript
-map.fitBounds(polygon.getBounds());  //getBounds（获取边界）：返回地图视图的经纬度边界。
+const fitBounds = () => {
+  console.log(polygon.getBounds());
+  map.fitBounds(polygon.getBounds()); //getBounds（获取边界）：返回地图视图的经纬度边界。
   //平移到一个区域上面，自动判断区域块的大小，合适缩放图层
+};
 
 let polygon = L.polygon(
-          [[37, -109.05],
-          [41, -109.03],
-          [41, -102.05],
-          [37, -102.04]],
-     [40.774, -74.125], {
-       color: 'green',
-       fillColor: '#f03',
-       fillOpacity: 0.5
-    }).addTo(map);  //地图上绘制一个多边形
+  [
+    [37, -109.05],
+    [41, -109.03],
+    [41, -102.05],
+    [37, -102.04],
+  ],
+  [40.774, -74.125],
+  {
+    color: 'green',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+  }
+).addTo(map); //地图上绘制一个多边形
 ```
 
 
@@ -268,8 +297,7 @@ let polygon = L.polygon(
 
 
 
-
-- 库引用
+1. 库引用
 
 ```Html
 <link rel="stylesheet" type="text/css"  href="./lib/Flat-UI-master/dist/css/vendor/bootstrap/css/bootstrap.min.css"
@@ -286,7 +314,7 @@ let polygon = L.polygon(
 <script src="./js/urlTemplate.js"></script>
 ```
 
-- 使用 esri-leaflet 插件加载 ArcGIS 底图服务
+2. 使用 esri-leaflet 插件加载 ArcGIS 底图服务
 
 ```JavaScript
 let oMap = null;
@@ -300,21 +328,21 @@ let oMap = null;
     }).setView([29.59, 106.59], 12); //定位在重庆
 
     oLayer.push(L.esri.tiledMapLayer({
-        url: urlTemplate.SYS_CQMap_IMG_MAPSERVER_PATH,
+        url: urlTemplate.SYS_IMG_MAPSERVER_PATH,
         maxZoom: 17,
         minZoom: 0,
         useCors: false, //是否浏览器在跨域的情况下使用GET请求。
     }).addTo(oMap)); //加载第一个底图
 
     oLayer.push(L.esri.tiledMapLayer({
-        url: urlTemplate.SYS_CQMap_IMG_LABEL_MAPSERVER_PATH,
+        url: urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH,
         maxZoom: 17,
         minZoom: 0,
         useCors: false,
     }).addTo(oMap));  //加载第二个底图
 ```
 
-- 切换底图(移除及加载)
+3. 切换底图(移除及加载)
 
 ```JavaScript
 const setLayer = (layerUrls, maxZoom) => {
