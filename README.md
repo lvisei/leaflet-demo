@@ -1,7 +1,5 @@
 # 入门 Leaflet 之小 Demo
 
-
-
 ## 写在前面
 
 > WebGIS 开发基础之 Leaflet 
@@ -44,7 +42,7 @@ GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Poly
 
 
 
-## PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.html)
+## PART 1： 地图加载（底图类型、切换） [Demo 1 ](https://github.com/lvisei/leaflet-demo/blob/master/demo1.html)
 
 
 
@@ -71,42 +69,45 @@ GIS、Map、Layer、Feature、Geometry、Symbol、Data（Point、Polyline、Poly
 
 ```JavaScript
 const map = L.map('mapDiv', {
-  crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
-  // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
+  // 要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
+  crs: L.CRS.EPSG3857,
+  // WGS84 坐标系，GPS 默认坐标系
+  // crs: L.CRS.EPSG4326,
   zoomControl: true,
   // minZoom: 1,
   attributionControl: false,
-}).setView([31.626866, 104.152894], 18); //定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
-let Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
-  maxZoom: 17, //最大视图
-  minZoom: 2, //最小视图
+}).setView([31.626866, 104.152894], 18);
+// 定位在成都北纬 N30°37′45.58″ 东经 E104°09′1.44″
+
+let baseLayer = L.tileLayer(urlTemplate.mapbox_Image, {
+  // 最大视图
+  maxZoom: 17,  
+  // 最小视图
+  minZoom: 2,   
   attribution:
-  'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">leaflet-demo</a>',
+  '@lvisei  &copy; <a href="https://github.com/lvisei/leaflet-demo">leaflet-demo</a>',
 }).addTo(map);
 
-console.log(Baselayer);
-
 const setLayer = (ele) => {
-  map.removeLayer(Baselayer);
+  map.removeLayer(baseLayer);
 
   if (ele == 'mapbox_Image') {
-    Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
+    baseLayer = L.tileLayer(urlTemplate.mapbox_Image, {
       maxZoom: 17,
       minZoom: 2,
     }).addTo(map);
   } else if (ele == 'mapbox_Vector') {
-    Baselayer = L.tileLayer(urlTemplate.mapbox_Vector, {
+    baseLayer = L.tileLayer(urlTemplate.mapbox_Vector, {
       maxZoom: 17,
       minZoom: 1,
     }).addTo(map);
-    console.log(Baselayer);
   }
 };
 ```
 
 
 
-## PART 1.1：基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.1.html)
+## PART 1.1：基于 Demo 1 利用 H5 Geolocation API 定位到当前位置 [Demo 1.1 ](https://github.com/lvisei/leaflet-demo/blob/master/demo1.1.html)
 
 
 
@@ -126,14 +127,15 @@ const setLayer = (ele) => {
 
 ```javaScript
 let map;
-let Baselayer;
+let baseLayer;
 // 使用H5 API定位 定位在当前位置
 if (navigator.geolocation) {
   console.log('/* 地理位置服务可用 */');
   navigator.geolocation.getCurrentPosition(h5ApiSuccess, h5ApiError);
 } else {
   console.log('/* 地理位置服务不可用 */');
-  mapInit([30.626866, 104.152894]); //指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+  // 指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+  mapInit([30.626866, 104.152894]); 
 }
 ```
 
@@ -141,15 +143,18 @@ if (navigator.geolocation) {
 
 ```JavaScript
 const h5ApiSuccess = (position) => {
-  const latitude = position.coords.latitude; //纬度
-  const longitude = position.coords.longitude; //经度
+  // 纬度
+  const latitude = position.coords.latitude;
+  // 经度
+  const longitude = position.coords.longitude; 
   console.log('你的经度纬度分别为' + longitude + ',' + latitude + '。');
   return mapInit([latitude, longitude]);
 };
 
 const h5ApiError = () => {
   console.log('/* 地理位置请求失败 */');
-  mapInit([31.626866, 104.152894]); //指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+  // 指定一个数据 定位在成都北纬N30°37′45.58″ 东经E104°09′1.44″
+  mapInit([31.626866, 104.152894]);
 };
 ```
 
@@ -158,35 +163,40 @@ const h5ApiError = () => {
 ```JavaScript
 const mapInit = (LatLng) => {
   map = L.map('mapDiv', {
-    crs: L.CRS.EPSG3857, //要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
-    // crs: L.CRS.EPSG4326, //WGS 84坐标系，GPS默认坐标系
+    // 要使用的坐标参考系统，默认的坐标参考系，互联网地图主流坐标系
+    crs: L.CRS.EPSG3857,
+    // WGS84 坐标系，默认坐标系
+    // crs: L.CRS.EPSG4326,
     zoomControl: true,
     // minZoom: 1,
     attributionControl: true,
-  }).setView(LatLng, 18); //定位在当前位置
-  Baselayer = L.tileLayer(urlTemplate.mapbox_Image, {
-    maxZoom: 17, //最大视图
-    minZoom: 2, //最小视图
+    // 定位在当前位置
+  }).setView(LatLng, 18); 
+
+  baseLayer = L.tileLayer(urlTemplate.mapbox_Image, {
+    // 最大视图
+    maxZoom: 17, 
+    // 最小视图
+    minZoom: 2, 
     attribution:
-    'liuvigongzuoshi@foxmail.com  &copy; <a href="https://github.com/liuvigongzuoshi/leaflet-demo">leaflet-demo</a>',
+    '@lvisei &copy; <a href="https://github.com/lvisei/leaflet-demo">leaflet-demo</a>',
   }).addTo(map);
 
   L.marker(LatLng, {
-    highlight: 'permanent', //永久高亮显示
+    // 永久高亮显示
+    highlight: 'permanent',
   }).addTo(map);
-
-  console.log(Baselayer);
 };
 ```
 
 5. 更多内容
 - 更多了解 geolocation 对象，可参考 [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation/Using_geolocation)
 - 更多了解使用 marker 高亮显示，可参考 [leaflet.marker.highlight](https://github.com/brandonxiang/leaflet.marker.highlight) 插件
-- 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo1.2.html)
+- 基于 Demo 1 利用 leaflet 封装好的 H5 定位 API,定位到当前位置 [Demo](https://github.com/lvisei/leaflet-demo/blob/master/demo1.2.html)
 
 
 
-### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo2.html)
+### PART 2： 地图操作（缩放、平移、定位/书签、动画） [Demo 2 ](https://github.com/lvisei/leaflet-demo/blob/master/demo2.html)
 
 
 
@@ -200,9 +210,10 @@ const mapInit = (LatLng) => {
 
 ```javaScript
 const setZoom = () => {
+  // 设置地图缩放到
   map.setZoom(10, {
     // animate: false
-  }); //设置地图缩放到
+  });
 };
 ```
 
@@ -210,11 +221,13 @@ const setZoom = () => {
 
 ```javaScript
 const setZoomIn = () => {
-  map.zoomIn(); //图层往里进一个图层，放大
+  // 图层往里进一个图层，放大
+  map.zoomIn(); 
 };
 
 const setZoomOut = () => {
-  map.zoomOut(); //图层往里出一个图层，缩小
+  // 图层往里出一个图层，缩小
+  map.zoomOut(); 
 };
 ```
 
@@ -222,9 +235,10 @@ const setZoomOut = () => {
 
 ```javaScript
 const panTo = () => {
+  // 地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
   map.panTo([37.91082, 128.73583], {
     animate: true,
-  }); //地图平移，默认就是true，将地图平移到给定的中心。如果新的中心点在屏幕内与现有的中心点不同则产生平移动作。
+  }); 
 };
 ```
 
@@ -232,7 +246,8 @@ const panTo = () => {
 
 ```javaScript
 const flyTo = () => {
-  map.flyTo([36.52, 120.31]); // 点到点的抛物线动画，平移加缩放动画
+  // 点到点的抛物线动画，平移加缩放动画
+  map.flyTo([36.52, 120.31]);
 };
 ```
 
@@ -242,8 +257,9 @@ const flyTo = () => {
 
 ```javaScript
 const flyToBounds = () => {
-  map.flyToBounds(polygon.getBounds()); //getBounds（获取边界）：返回地图视图的经纬度边界。
-  //飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
+  // getBounds（获取边界）：返回地图视图的经纬度边界。
+  map.flyToBounds(polygon.getBounds()); 
+  // 飞到这个多变形区域上面，自动判断区域块的大小，合适缩放图层，将地图视图尽可能大地设定在给定的地理边界内。
 };
 
 let polygon = L.polygon(
@@ -259,16 +275,18 @@ let polygon = L.polygon(
     fillColor: '#f03',
     fillOpacity: 0.5,
   }
-).addTo(map); //地图上绘制一个多边形
+).addTo(map); 
+// 地图上绘制一个多边形
 ```
 
 7. 地图定位到边界的合适的位置
 
 ```JavaScript
 const fitBounds = () => {
+  // getBounds（获取边界）：返回地图视图的经纬度边界。
   console.log(polygon.getBounds());
-  map.fitBounds(polygon.getBounds()); //getBounds（获取边界）：返回地图视图的经纬度边界。
-  //平移到一个区域上面，自动判断区域块的大小，合适缩放图层
+  map.fitBounds(polygon.getBounds()); 
+  // 平移到一个区域上面，自动判断区域块的大小，合适缩放图层
 };
 
 let polygon = L.polygon(
@@ -284,12 +302,13 @@ let polygon = L.polygon(
     fillColor: '#f03',
     fillOpacity: 0.5,
   }
-).addTo(map); //地图上绘制一个多边形
+).addTo(map); 
+// 地图上绘制一个多边形
 ```
 
 
 
-## PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo3.html)
+## PART 3： 图层管理（加载、移除、调整顺序）： [Demo 3 ](https://github.com/lvisei/leaflet-demo/blob/master/demo3.html)
 
 
 
@@ -327,21 +346,25 @@ oMap = L.map('mapDiv', {
   zoomControl: false,
   minZoom: 7,
   attributionControl: false
-}).setView([29.59, 106.59], 12); //定位在重庆
+  // 定位在重庆
+}).setView([29.59, 106.59], 12);
 
 oLayer.push(L.esri.tiledMapLayer({
   url: urlTemplate.SYS_IMG_MAPSERVER_PATH,
   maxZoom: 17,
   minZoom: 0,
-  useCors: false, //是否浏览器在跨域的情况下使用GET请求。
-}).addTo(oMap)); //加载第一个底图
+  // 是否浏览器在跨域的情况下使用GET请求
+  useCors: false,
+}).addTo(oMap)); 
+// 加载第一个底图
 
 oLayer.push(L.esri.tiledMapLayer({
   url: urlTemplate.SYS_IMG_LABEL_MAPSERVER_PATH,
   maxZoom: 17,
   minZoom: 0,
   useCors: false,
-}).addTo(oMap));  //加载第二个底图
+}).addTo(oMap));
+// 加载第二个底图
 ```
 
 3. 切换底图(移除及加载)
@@ -349,15 +372,18 @@ oLayer.push(L.esri.tiledMapLayer({
 ```JavaScript
 const setLayer = (layerUrls, maxZoom) => {
   for (let i = 0; i < oLayer.length; i++) {
-    oMap.removeLayer(oLayer[i]); //将图层在地图上移除
+    // 将图层在地图上移除
+    oMap.removeLayer(oLayer[i]); 
   }
-  oLayer = []; //制空数组
+  // 制空数组
+  oLayer = [];
   layerUrls.map((item) => {
     oLayer.push(
       L.esri
       .tiledMapLayer({
         url: item,
-        useCors: false, //是否浏览器在跨域的情况下使用GET请求。
+        // 是否浏览器在跨域的情况下使用GET请求
+        useCors: false,
         maxZoom: maxZoom,
       })
       .addTo(oMap)
@@ -370,7 +396,7 @@ const setLayer = (layerUrls, maxZoom) => {
 
 
 
-## PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo4.html)
+## PART 4： 要素标绘（点、线、面，符号化/静态动态） [Demo 4 ](https://github.com/lvisei/leaflet-demo/blob/master/demo4.html)
 
 
 
@@ -383,12 +409,16 @@ const setLayer = (layerUrls, maxZoom) => {
 2. 画一个圆
 
 ```JavaScript
-// 画一个circle
+// 画一个 circle
 const circle = L.circle([36.52, 120.31], {
-  color: 'green', //描边色
-  fillColor: '#f03',  //填充色
-  fillOpacity: 0.5, //透明度
-  radius: 10000 //半径，单位米
+  // 描边色
+  color: 'green',
+  // 填充色
+  fillColor: '#f03', 
+  // 透明度
+  fillOpacity: 0.5,
+  // 半径，单位米
+  radius: 10000
 }).addTo(map);
 // 绑定一个提示标签
 circle.bindTooltip('我是个圆');
@@ -397,17 +427,19 @@ circle.bindTooltip('我是个圆');
 3. Maker 及自定义 Maker
 
 ```JavaScript
-// 做一个maker
+// 生成一个 maker
 const marker = L.marker([36.52, 120.31]).addTo(map);
 // 绑定一个提示标签
 marker.bindTooltip('这是个Marker', { direction: 'left' }).openTooltip();
 
 
-//自定义一个maker
+// 自定义一个  maker
 const greenIcon = L.icon({
   iconUrl: './icon/logo.png',
-  iconSize: [300, 79], // size of the icon
-  popupAnchor: [0, -10] // point from which the popup should open relative to the iconAnchor
+  // size of the icon
+  iconSize: [300, 79],
+  // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -10] 
 });
 
 const oMarker = L.marker([36.52, 124.31], { icon: greenIcon }).addTo(map);
@@ -418,7 +450,7 @@ oMarker.bindTooltip('这是个自定义Marker', { direction: 'left', offset: [-1
 4. 画一根线
 
 ```JavaScript
-//画一根线
+// 画一根线
 const polyline = L.polyline([[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]], { color: 'red' }).addTo(map);
 // 飞到这个线的位置
 map.fitBounds(polyline.getBounds());
@@ -444,7 +476,7 @@ map.fitBounds(polygon.getBounds());
 
 
 
-## PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo5.html)
+## PART 5： 信息窗口（入口、Popup、定制） [Demo 5 ](https://github.com/lvisei/leaflet-demo/blob/master/demo5.html)
 
 
 
@@ -475,7 +507,7 @@ circle.bindPopup('我是个圆');
 // 定位一个maker
 const marker = L.marker([36.52, 120.31]).addTo(map);
 
-//maker上自定义一个popup
+// maker上自定义一个 popup
 const html = '<p>Hello world!<br />This is a nice popup.</p>';
 
 const popup = marker.bindPopup(html, { maxHeight: 250, maxWidth: 490, className: 'content', offset: [0, 0] }).on('popupopen', function (params) {
@@ -497,7 +529,7 @@ map.on('click', function (e) {
 
 
 
-## PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/demo6.html)
+## PART 6： geojson 数据绘制边界(坐标转换、渲染) [Demo 6 ](https://github.com/lvisei/leaflet-demo/blob/master/demo6.html)
 
 
 
@@ -510,7 +542,7 @@ map.on('click', function (e) {
 2. 获得 geojson 并处理数据
 
 ```JavaScript
-// 请求geojson并处理数据
+// 请求 geojson 并处理数据
 const population = () => {
   $.get('./js/geojson.json', function (response) {
     const poplData = response.data;
@@ -520,7 +552,7 @@ const population = () => {
 };
 ```
 
-> Mock 返回的数据 [GeoJSON](https://github.com/liuvigongzuoshi/leaflet-demo/blob/master/js/geojson.json)
+> Mock 返回的数据 [GeoJSON](https://github.com/lvisei/leaflet-demo/blob/master/js/geojson.json)
 
 3. 绘制边界并添加图例
 
@@ -539,7 +571,8 @@ const drawPolygons = (poplData, PolygonsCenter) => {
       style: function () {
         return {
           color: 'white',
-          fillColor: getBgColor(poplData[i].population), //获取边界的填充色
+          // 获取边界的填充色
+          fillColor: getBgColor(poplData[i].population), 
           fillOpacity: 0.6,
           weight: 3,
           dashArray: '10',
@@ -550,9 +583,12 @@ const drawPolygons = (poplData, PolygonsCenter) => {
       direction: 'top',
     })
       .on({
-      mouseover: highlight, //鼠标移动上去高亮
-      mouseout: resetHighlight, //鼠标移出恢复原样式
-      click: zoomTo, //点击最大化
+      // 鼠标移动上去高亮
+      mouseover: highlight,
+      // 鼠标移出恢复原样式
+      mouseout: resetHighlight, 
+      // 点击最大化
+      click: zoomTo, 
     })
       .addTo(oMap);
   }
@@ -639,7 +675,7 @@ const zoomTo = (e) => {
 
 - Leaflet 调用国内各种地图的功能十分复杂，幸好有 leaflet.ChineseTmsProviders 这个插件，这四种地图直接就可以加载进来，十分方便。
 
-- 使用方法很简单可点击上面链接去 GitHub 看使用说明，或拉[这个 demo](https://github.com/liuvigongzuoshi/WebGIS-for-learnning/tree/master/Leaflet.ChineseTmsProviders_Demo)下来来瞧一瞧代码。
+- 使用方法很简单可点击上面链接去 GitHub 看使用说明，或拉[这个 demo](https://github.com/lvisei/WebGIS-for-learnning/tree/master/Leaflet.ChineseTmsProviders_Demo)下来来瞧一瞧代码。
 
 ### 优化 marker 相关的插件
 
@@ -655,7 +691,7 @@ const zoomTo = (e) => {
 
 ### Leaflet 学习资料整理
 
-- [Leaflet-Develop-Guide 🍃](https://github.com/liuvigongzuoshi/summarize-web-resources/blob/master/leaflet/leaflet-develop-guide.md) -开发文档及常用插件小结
+- [Leaflet-Develop-Guide 🍃](https://github.com/lvisei/summarize-web-resources/blob/master/leaflet/leaflet-develop-guide.md) -开发文档及常用插件小结
 
 ### 模块化开发的加载包注意的问题
 
@@ -678,6 +714,6 @@ const zoomTo = (e) => {
 
 
 
-*本文 DEMO 地址: https://github.com/liuvigongzuoshi/leaflet-demo*
+*本文 DEMO 地址: https://github.com/lvisei/leaflet-demo*
 
-*原文首发地址 [https://github.com/liuvigongzuoshi/blog](https://github.com/liuvigongzuoshi/leaflet-demo)*
+*原文首发地址 [https://github.com/lvisei/blog](https://github.com/lvisei/leaflet-demo)*
